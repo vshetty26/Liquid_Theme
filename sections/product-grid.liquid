@@ -1,0 +1,207 @@
+{{ 'product-grid.css' | asset_url | stylesheet_tag }}
+
+<div class="product-grid-container">
+  <!-- Featured Section with Sticky Header -->
+  <div class="featured-section">
+    <div class="featured-header">
+      <div class="featured-header-content">
+        <a href="{{ section.settings.shop_now_url }}" class="shop-now-button">
+          SHOP NOW
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <h1 class="featured-title">NEW<br>ARRIVALS</h1>
+      </div>
+    </div>
+    
+    <!-- Featured Products Grid -->
+    <div class="featured-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'featured_product' %}
+          <div class="product-card">
+            <div class="product-image-container">
+              <img 
+                src="{{ block.settings.image | img_url: '1200x' }}"
+                srcset="{{ block.settings.image | img_url: '800x' }} 800w,
+                        {{ block.settings.image | img_url: '1200x' }} 1200w"
+                sizes="(max-width: 1024px) 100vw, 25vw"
+                width="1200"
+                height="1200"
+                loading="lazy"
+                alt="{{ block.settings.title }}"
+                class="product-image"
+              >
+              <img 
+                src="{{ block.settings.hover_image | img_url: '1200x' }}"
+                srcset="{{ block.settings.hover_image | img_url: '800x' }} 800w,
+                        {{ block.settings.hover_image | img_url: '1200x' }} 1200w"
+                sizes="(max-width: 1024px) 100vw, 25vw"
+                width="1200"
+                height="1200"
+                loading="lazy"
+                alt="{{ block.settings.title }} - Hover"
+                class="product-image-hover"
+              >
+            </div>
+
+            {% if block.settings.is_new %}
+              <div class="new-label">New</div>
+            {% endif %}
+
+            <div class="product-content">
+              <div class="product-category">{{ block.settings.category }}</div>
+              <h3 class="product-name">{{ block.settings.title }}</h3>
+              <div class="product-price">${{ block.settings.price }}</div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Product Grid (2x2) -->
+  <div class="product-grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'product' %}
+        <div class="product-card">
+          <div class="product-image-container">
+            <img 
+              src="{{ block.settings.image | img_url: '1200x' }}"
+              srcset="{{ block.settings.image | img_url: '800x' }} 800w,
+                      {{ block.settings.image | img_url: '1200x' }} 1200w"
+              sizes="(max-width: 1024px) 100vw, 25vw"
+              width="1200"
+              height="1200"
+              loading="lazy"
+              alt="{{ block.settings.title }}"
+              class="product-image"
+            >
+            <img 
+              src="{{ block.settings.hover_image | img_url: '1200x' }}"
+              srcset="{{ block.settings.hover_image | img_url: '800x' }} 800w,
+                      {{ block.settings.hover_image | img_url: '1200x' }} 1200w"
+              sizes="(max-width: 1024px) 100vw, 25vw"
+              width="1200"
+              height="1200"
+              loading="lazy"
+              alt="{{ block.settings.title }} - Hover"
+              class="product-image-hover"
+            >
+          </div>
+
+          {% if block.settings.is_new %}
+            <div class="new-label">New</div>
+          {% endif %}
+
+          <div class="product-content">
+            <div class="product-category">{{ block.settings.category }}</div>
+            <h3 class="product-name">{{ block.settings.title }}</h3>
+            <div class="product-price">${{ block.settings.price }}</div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    {
+      "type": "url",
+      "id": "shop_now_url",
+      "label": "Shop Now URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured_product",
+      "name": "Featured Grid Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_image",
+          "label": "Hover Image"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category",
+          "default": "TOPS"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Product Title"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "85"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_new",
+          "label": "Show New Label",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Grid Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_image",
+          "label": "Hover Image"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category",
+          "default": "TOPS"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Product Title"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "85"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_new",
+          "label": "Show New Label",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Grid",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

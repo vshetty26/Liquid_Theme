@@ -1,0 +1,179 @@
+{{ 'accessories-grid.css' | asset_url | stylesheet_tag }}
+
+{% assign section_id = 'accessories-grid-' | append: section.id %}
+
+<div class="accessories-grid" id="{{ section_id }}" style="background-color: {{ section.settings.background_color }}">
+  <div class="accessories-container">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      {% if section.settings.show_view_all %}
+        <a href="{{ section.settings.view_all_link }}" class="view-all-link">
+          {{ section.settings.view_all_text }}
+          <span class="arrow-icon">{% render 'icon-arrow-right' %}</span>
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="products-grid" style="--products-per-row: {{ section.settings.products_per_row }}">
+      {% if section.settings.enable_carousel %}
+        <button class="carousel-button prev" aria-label="Previous">{% render 'icon-arrow-left' %}</button>
+      {% endif %}
+
+      <div class="products-container {% if section.settings.enable_carousel %}carousel-enabled{% endif %}">
+        {% for block in section.blocks %}
+          <div class="product-card" {{ block.shopify_attributes }}>
+            <div class="product-image-wrapper">
+              {% if block.settings.product_image != blank %}
+                <img 
+                  src="{{ block.settings.product_image | img_url: '600x' }}"
+                  srcset="{{ block.settings.product_image | img_url: '400x' }} 400w,
+                          {{ block.settings.product_image | img_url: '600x' }} 600w,
+                          {{ block.settings.product_image | img_url: '800x' }} 800w"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  alt="{{ block.settings.product_name }}"
+                  loading="lazy"
+                  width="600"
+                  height="600"
+                >
+              {% endif %}
+
+              {% if section.settings.show_quick_view %}
+                <button class="quick-view-button">Quick View</button>
+              {% endif %}
+            </div>
+
+            <div class="product-info">
+              {% if block.settings.category != blank %}
+                <div class="category-label">{{ block.settings.category }}</div>
+              {% endif %}
+              
+              <h3 class="product-name">{{ block.settings.product_name }}</h3>
+              
+              {% if block.settings.price != blank %}
+                <div class="product-price">{{ block.settings.price }}</div>
+              {% endif %}
+            </div>
+
+            {% if section.settings.show_add_to_cart %}
+              <button class="add-to-cart-button">Add to Cart</button>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if section.settings.enable_carousel %}
+        <button class="carousel-button next" aria-label="Next">{% render 'icon-arrow-right' %}</button>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Accessories Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Accessories"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Products per Row",
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_carousel",
+      "label": "Enable Carousel",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_view",
+      "label": "Show Quick View Button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_add_to_cart",
+      "label": "Show Add to Cart Button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Text",
+      "default": "VIEW ALL"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category",
+          "default": "CLASSICS"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accessories Grid",
+      "category": "Products",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

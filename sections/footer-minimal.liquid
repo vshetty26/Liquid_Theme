@@ -1,0 +1,157 @@
+{{ 'footer-minimal.css' | asset_url | stylesheet_tag }}
+
+{% assign section_id = 'footer-minimal-' | append: section.id %}
+
+<footer class="footer-minimal" id="{{ section_id }}" style="background-color: {{ section.settings.background_color }}">
+  <div class="footer-container">
+    <div class="footer-content">
+      {% if section.settings.show_logo %}
+        <div class="footer-logo">
+          {% if section.settings.logo != blank %}
+            <img 
+              src="{{ section.settings.logo | img_url: '180x' }}"
+              alt="{{ shop.name }}"
+              width="90"
+              height="90"
+              loading="lazy"
+            >
+          {% else %}
+            <span class="shop-name">{{ shop.name }}</span>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="footer-links">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'link' %}
+              <a href="{{ block.settings.link }}" class="footer-link" {{ block.shopify_attributes }}>
+                {{ block.settings.title }}
+              </a>
+          {% endcase %}
+        {% endfor %}
+      </div>
+
+      {% if section.settings.show_social %}
+        <div class="social-links">
+          {% if section.settings.instagram_link != blank %}
+            <a href="{{ section.settings.instagram_link }}" class="social-link" target="_blank" rel="noopener">
+              {% render 'icon-instagram' %}
+            </a>
+          {% endif %}
+          {% if section.settings.twitter_link != blank %}
+            <a href="{{ section.settings.twitter_link }}" class="social-link" target="_blank" rel="noopener">
+              {% render 'icon-twitter' %}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if section.settings.show_copyright %}
+        <div class="copyright">
+          <p>{{ section.settings.copyright_text }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Minimal Footer",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "label": "Show Logo",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show Social Links",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "instagram_link",
+      "label": "Instagram Link"
+    },
+    {
+      "type": "url",
+      "id": "twitter_link",
+      "label": "Twitter Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_copyright",
+      "label": "Show Copyright",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "© 2025 Your Store. All rights reserved."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Footer Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Link Text",
+          "default": "About Us"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Minimal Footer",
+      "blocks": [
+        {
+          "type": "link",
+          "settings": {
+            "title": "About",
+            "link": "/pages/about"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "Contact",
+            "link": "/pages/contact"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "title": "Privacy Policy",
+            "link": "/policies/privacy-policy"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

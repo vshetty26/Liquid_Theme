@@ -1,0 +1,132 @@
+{{ 'collection-slider.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'collection-slider.js' | asset_url }}" defer></script>
+
+<div class="collection-slider-section">
+  <div class="collection-header">
+    <h2 class="collection-title">{{ section.settings.header_text }}</h2>
+  </div>
+  
+  <div class="collection-slider-container">
+    {% for i in (1..6) %}
+      {% assign image_field = 'image_' | append: i %}
+      {% assign image = section.settings[image_field] %}
+      
+      <div class="collection-slide">
+        <div class="collection-image-container">
+          {% if image != blank %}
+            <img 
+              src="{{ image | img_url: 'master' }}" 
+              alt="{{ image.alt | escape }}" 
+              class="collection-image"
+              loading="{% if i == 1 %}eager{% else %}lazy{% endif %}"
+            >
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'collection-image placeholder' }}
+          {% endif %}
+        </div>
+        
+        <div class="collection-number">
+          <div class="collection-number-text">NO.</div>
+          <div>
+            <span class="collection-number-value">{{ i }}</span>
+            <span class="collection-number-separator">/</span>
+            <span class="collection-number-total">7</span>
+          </div>
+        </div>
+        
+        {% if section.settings.show_drag_circle %}
+          <div class="drag-circle-indicator">
+            <span class="drag-circle-text">Drag</span>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  
+  <div class="progress-dots">
+    {% for i in (1..6) %}
+      <div class="progress-dot {% if i == 1 %}active{% endif %}"></div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header_text",
+      "label": "Header Text",
+      "default": "OUR DIGITAL COLLECTION"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_drag_circle",
+      "label": "Show Static Drag Circle",
+      "default": true,
+      "info": "Shows a static 'Drag' circle on each slide in addition to the cursor"
+    },
+    {
+      "type": "header",
+      "content": "Slide 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "header",
+      "content": "Slide 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "header",
+      "content": "Slide 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "header",
+      "content": "Slide 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "header",
+      "content": "Slide 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "header",
+      "content": "Slide 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Slider",
+      "category": "Custom Content"
+    }
+  ]
+}
+{% endschema %} 

@@ -1,0 +1,346 @@
+.collection-slider-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #121212;
+    color: #ffffff;
+    overflow: hidden;
+    cursor: none; /* Hide default cursor for custom cursor */
+    transition: opacity 0.8s ease;
+  }
+  
+  .collection-slider-section.transitioning-out {
+    opacity: 0.9;
+  }
+  
+  .collection-slider-container {
+    position: relative;
+    width: 600vw; /* 6 slides, each 100vw */
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+  
+  .collection-slide {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .collection-image-container {
+    position: relative;
+    width: 60%;
+    height: 90%;
+    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+  }
+  
+  /* Last slide image should stay visible longer during transition */
+  .collection-slide:last-child .collection-image-container {
+    transition: opacity 0.8s ease-out;
+  }
+  
+  .collection-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .collection-header {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 10;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  
+  .collection-title {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  .collection-number {
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  
+  .collection-number-text {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+  }
+  
+  .collection-number-value {
+    font-size: 3.5rem;
+    font-weight: 900;
+  }
+  
+  .collection-number-separator {
+    margin: 0 0.2rem;
+    font-weight: 300;
+  }
+  
+  .collection-number-total {
+    font-weight: 300;
+  }
+  
+  /* Custom drag cursor */
+  .drag-cursor {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(188, 143, 143, 0.6); /* Rosy brown color from reference */
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    mix-blend-mode: difference;
+  }
+  
+  .drag-cursor-text {
+    font-family: serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-weight: 300;
+  }
+  
+  .drag-cursor.active {
+    width: 120px;
+    height: 120px;
+    background-color: rgba(188, 143, 143, 0.8);
+  }
+  
+  .drag-cursor.hidden {
+    opacity: 0;
+  }
+  
+  /* Static drag circle indicator on slides */
+  .drag-circle-indicator {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(188, 143, 143, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    right: 2rem;
+    bottom: 2rem;
+  }
+  
+  .drag-circle-text {
+    font-family: serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: #ffffff;
+    font-weight: 300;
+  }
+  
+  /* Progress dots */
+  .progress-dots {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+  
+  .progress-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: background-color 0.3s ease;
+  }
+  
+  .progress-dot.active {
+    background-color: #ffffff;
+  }
+  
+  /* Ensure the about section has a proper transition */
+  .about-section {
+    position: relative;
+    z-index: 10;
+    background-color: #121212;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 1200px) {
+    .collection-image-container {
+      width: 70%;
+    }
+    
+    .drag-cursor {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .drag-cursor-text {
+      font-size: 1.2rem;
+    }
+    
+    .drag-cursor.active {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .drag-circle-indicator {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .drag-circle-text {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .collection-header {
+      top: 1.5rem;
+      left: 1.5rem;
+    }
+    
+    .collection-title {
+      font-size: 1rem;
+    }
+    
+    .collection-number {
+      left: 1.5rem;
+      bottom: 1.5rem;
+      font-size: 2rem;
+    }
+    
+    .collection-number-value {
+      font-size: 2.5rem;
+    }
+    
+    .collection-image-container {
+      width: 80%;
+    }
+    
+    .drag-cursor {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .drag-cursor-text {
+      font-size: 1rem;
+    }
+    
+    .drag-cursor.active {
+      width: 80px;
+      height: 80px;
+    }
+    
+    .drag-circle-indicator {
+      width: 60px;
+      height: 60px;
+      right: 1.5rem;
+      bottom: 1.5rem;
+    }
+    
+    .drag-circle-text {
+      font-size: 1rem;
+    }
+    
+    .progress-dots {
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+    
+    .progress-dot {
+      width: 6px;
+      height: 6px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .collection-header {
+      top: 1rem;
+      left: 1rem;
+    }
+    
+    .collection-title {
+      font-size: 0.9rem;
+    }
+    
+    .collection-number {
+      left: 1rem;
+      bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    .collection-number-value {
+      font-size: 2rem;
+    }
+    
+    .collection-image-container {
+      width: 90%;
+    }
+    
+    .drag-cursor {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .drag-cursor-text {
+      font-size: 0.9rem;
+    }
+    
+    .drag-cursor.active {
+      width: 70px;
+      height: 70px;
+    }
+    
+    .drag-circle-indicator {
+      width: 50px;
+      height: 50px;
+      right: 1rem;
+      bottom: 1rem;
+    }
+    
+    .drag-circle-text {
+      font-size: 0.9rem;
+    }
+    
+    .progress-dots {
+      top: 1rem;
+      right: 1rem;
+    }
+    
+    .progress-dot {
+      width: 5px;
+      height: 5px;
+    }
+  } 

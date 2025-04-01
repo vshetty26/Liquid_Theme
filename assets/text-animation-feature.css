@@ -1,0 +1,122 @@
+.text-animation-section {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10vh 12vw;
+    position: relative;
+    background-color: #000000;
+    color: #ffffff;
+    overflow: hidden;
+  }
+  
+  .text-block {
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .text-block-left {
+    align-self: flex-start;
+    padding-top: 5vh;
+  }
+  
+  .text-block-right {
+    align-self: flex-end;
+    text-align: right;
+    max-width: 90%;
+    padding-bottom: 15vh;
+  }
+  
+  .text-block-right.animate-out {
+    transform: translateX(100%);
+  }
+  
+  .text-block-left.animate-out {
+    transform: translateX(-100%);
+  }
+  
+  .heading-large {
+    font-size: 4.8vw;
+    line-height: 0.95;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 0.2em;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: #ffffff;
+  }
+  
+  .highlight {
+    font-weight: 700;
+    color: #ffffff;
+  }
+  
+  .italic {
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    text-transform: lowercase;
+    font-weight: 400;
+    font-size: 0.9em;
+    letter-spacing: 0;
+    color: #ffffff;
+    display: inline-block;
+    transform: translateY(-0.05em);
+  }
+  
+  .text-footnote {
+    position: fixed;
+    bottom: 5vh;
+    left: 12vw;
+    font-size: 1rem;
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    color: #ffffff;
+    opacity: 0.5;
+    z-index: 1;
+  }
+  
+  @media (max-width: 1200px) {
+    .heading-large {
+      font-size: 5.2vw;
+    }
+    
+    .text-animation-section {
+      padding: 8vh 10vw;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .text-animation-section {
+      padding: 6vh 8vw;
+    }
+    
+    .heading-large {
+      font-size: 6vw;
+    }
+    
+    .text-block-right {
+      padding-bottom: 12vh;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .text-animation-section {
+      padding: 5vh 6vw;
+    }
+    
+    .heading-large {
+      font-size: 7vw;
+    }
+    
+    .text-block-right {
+      padding-bottom: 10vh;
+    }
+    
+    .text-footnote {
+      left: 6vw;
+      font-size: 0.9rem;
+    }
+  } 

@@ -1,0 +1,29 @@
+{{ 'text-animation-feature.css' | asset_url | stylesheet_tag }}
+
+<div class="text-animation-section">
+  <div class="text-block text-block-left">
+    <h2 class="heading-large">WE MERGE THE <span class="highlight">DIGITAL</span></h2>
+    <h2 class="heading-large">POSSIBILITIES AND</h2>
+  </div>
+  
+  <div class="text-block text-block-right">
+    <h2 class="heading-large">THE NEEDS <span class="italic">of</span> FASHION</h2>
+    <h2 class="heading-large">BRANDS TO CREATE</h2>
+    <h2 class="heading-large"><span class="highlight">NEW KINDS</span> <span class="italic">of</span> EXPERIENCES.</h2>
+  </div>
+  
+  <div class="text-footnote">(n)</div>
+</div>
+
+{% schema %}
+{
+  "name": "Text Feature",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Text Feature",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %} 

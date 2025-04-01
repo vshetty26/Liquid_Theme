@@ -1,0 +1,222 @@
+{{ 'featured-product.css' | asset_url | stylesheet_tag }}
+{{ 'featured-product.js' | asset_url | script_tag }}
+
+{% assign section_id = 'featured-product-' | append: section.id %}
+
+<div class="featured-product" id="{{ section_id }}" style="--accent-color: {{ section.settings.accent_color }}">
+  <div class="featured-heading-wrapper">
+    <h1 class="featured-heading scroll-reveal" data-scroll>
+      <span class="heading-word">BUILD</span>
+      <span class="heading-word">IN</span>
+      <span class="heading-word">STYLE</span>
+    </h1>
+  </div>
+  <div class="featured-container">
+    <div class="featured-grid">
+      <div class="featured-image-column">
+        <div class="featured-image-wrapper">
+          <img 
+            class="featured-image float-animation"
+            src="{{ section.settings.product_image | img_url: '1200x' }}"
+            srcset="{{ section.settings.product_image | img_url: '800x' }} 800w,
+                    {{ section.settings.product_image | img_url: '1200x' }} 1200w,
+                    {{ section.settings.product_image | img_url: '1600x' }} 1600w"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            alt="{{ section.settings.product_title }}"
+            loading="lazy"
+          >
+          
+          <div class="floating-elements">
+            <div class="float-element circle float-animation" style="--delay: 0s"></div>
+            <div class="float-element square float-animation" style="--delay: 0.2s"></div>
+            <div class="float-element triangle float-animation" style="--delay: 0.4s"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="featured-info-column">
+        <div class="featured-info">
+          <span class="featured-label reveal-animation">{{ section.settings.label }}</span>
+          <h2 class="featured-title reveal-animation">{{ section.settings.product_title }}</h2>
+          <div class="featured-price reveal-animation">
+            <span class="price">{{ section.settings.price }}</span>
+            {% if section.settings.compare_price != blank %}
+              <span class="compare-price">{{ section.settings.compare_price }}</span>
+            {% endif %}
+          </div>
+
+          <div class="featured-description reveal-animation">
+            {{ section.settings.description }}
+          </div>
+
+          <div class="color-options reveal-animation">
+            <span class="color-label">Available Colors</span>
+            <div class="color-swatches">
+              {% for block in section.blocks %}
+                {% if block.type == 'color_variant' %}
+                  <button 
+                    class="color-swatch {% if forloop.first %}active{% endif %}"
+                    data-color="{{ block.settings.color }}"
+                    data-image="{{ block.settings.variant_image | img_url: '1200x' }}"
+                    style="--swatch-color: {{ block.settings.color }}"
+                    aria-label="Select {{ block.settings.color_name }}"
+                  >
+                    <span class="color-name">{{ block.settings.color_name }}</span>
+                  </button>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="featured-actions reveal-animation">
+            <button class="featured-buy-button">
+              <span class="button-text">Add to Cart</span>
+              <span class="button-icon">+</span>
+            </button>
+            <button class="featured-wishlist-button">
+              {% render 'icon-heart' %}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="featured-container">
+    <div class="featured-content">
+      <h1 class="featured-title" style="
+        font-size: {{ section.settings.heading_size }}px;
+        color: {{ section.settings.heading_color }};
+      ">
+        {{ section.settings.heading }}
+      </h1>
+
+      <div class="product-image-container">
+        {% if section.settings.product_image != blank %}
+          <img 
+            src="{{ section.settings.product_image | img_url: '1200x' }}"
+            srcset="{{ section.settings.product_image | img_url: '800x' }} 800w,
+                    {{ section.settings.product_image | img_url: '1200x' }} 1200w,
+                    {{ section.settings.product_image | img_url: '1600x' }} 1600w"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            alt="{{ section.settings.product_name }}"
+            class="featured-product-image"
+            loading="eager"
+            width="1200"
+            height="1200"
+          >
+        {% endif %}
+      </div>
+
+      <div class="product-info">
+        {% if section.settings.category != blank %}
+          <span class="category-label">{{ section.settings.category }}</span>
+        {% endif %}
+        
+        <h2 class="product-name">{{ section.settings.product_name }}</h2>
+        
+        {% if section.settings.price != blank %}
+          <div class="price">{{ section.settings.price }}</div>
+        {% endif %}
+
+        {% if section.settings.show_cta %}
+          <a href="{{ section.settings.cta_link }}" class="cta-button">
+            {{ section.settings.cta_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Product",
+  "settings": [
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Product Label",
+      "default": "Featured"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Product Title",
+      "default": "Loading Tee"
+    },
+    {
+      "type": "text",
+      "id": "price",
+      "label": "Price",
+      "default": "$35"
+    },
+    {
+      "type": "text",
+      "id": "compare_price",
+      "label": "Compare at Price",
+      "default": "$45"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Product Description",
+      "default": "<p>A versatile and comfortable tee for your everyday style.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "color_variant",
+      "name": "Color Variant",
+      "settings": [
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Color",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "color_name",
+          "label": "Color Name",
+          "default": "Black"
+        },
+        {
+          "type": "image_picker",
+          "id": "variant_image",
+          "label": "Variant Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Product",
+      "blocks": [
+        {
+          "type": "color_variant"
+        },
+        {
+          "type": "color_variant"
+        },
+        {
+          "type": "color_variant"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

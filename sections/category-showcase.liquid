@@ -1,0 +1,202 @@
+{{ 'category-showcase.css' | asset_url | stylesheet_tag }}
+
+<div class="category-showcase">
+  <!-- Infinite Scrolling Text -->
+  <div class="scrolling-text-container">
+    <div class="scrolling-text">
+      <div class="text-content">
+        {% for i in (1..2) %}
+          <span data-feature="safe">SAFE TO WEAR</span>
+          <span data-feature="easy">EASY TO USE</span>
+          <span data-feature="durable">BUILT TO LAST</span>
+          <span data-feature="comfort">MAXIMUM COMFORT</span>
+          <span data-feature="quality">PREMIUM QUALITY</span>
+          <span data-feature="design">MODERN DESIGN</span>
+        {% endfor %}
+      </div>
+      <div class="text-content" aria-hidden="true">
+        {% for i in (1..2) %}
+          <span data-feature="safe">SAFE TO WEAR</span>
+          <span data-feature="easy">EASY TO USE</span>
+          <span data-feature="durable">BUILT TO LAST</span>
+          <span data-feature="comfort">MAXIMUM COMFORT</span>
+          <span data-feature="quality">PREMIUM QUALITY</span>
+          <span data-feature="design">MODERN DESIGN</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="product-grid">
+    <!-- Product 1 -->
+    <div class="product-card" data-feature="safe">
+      <div class="product-image">
+        <img 
+          src="{{ section.settings.product1_image | img_url: '800x' }}"
+          srcset="{{ section.settings.product1_image | img_url: '800x' }} 800w,
+                  {{ section.settings.product1_image | img_url: '1200x' }} 1200w"
+          sizes="(max-width: 768px) 100vw, 25vw"
+          loading="lazy"
+          width="800"
+          height="1067"
+          alt="Product 1"
+        >
+      </div>
+      <div class="product-info">
+        <h2>TOPS</h2>
+        <a href="{{ section.settings.product1_url }}" class="shop-now">
+          SHOP NOW
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card" data-feature="easy">
+      <div class="product-image">
+        <img 
+          src="{{ section.settings.product2_image | img_url: '800x' }}"
+          srcset="{{ section.settings.product2_image | img_url: '800x' }} 800w,
+                  {{ section.settings.product2_image | img_url: '1200x' }} 1200w"
+          sizes="(max-width: 768px) 100vw, 25vw"
+          loading="lazy"
+          width="800"
+          height="1067"
+          alt="Product 2"
+        >
+      </div>
+      <div class="product-info">
+        <h2>BOTTOMS</h2>
+        <a href="{{ section.settings.product2_url }}" class="shop-now">
+          SHOP NOW
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card" data-feature="durable">
+      <div class="product-image">
+        <img 
+          src="{{ section.settings.product3_image | img_url: '800x' }}"
+          srcset="{{ section.settings.product3_image | img_url: '800x' }} 800w,
+                  {{ section.settings.product3_image | img_url: '1200x' }} 1200w"
+          sizes="(max-width: 768px) 100vw, 25vw"
+          loading="lazy"
+          width="800"
+          height="1067"
+          alt="Product 3"
+        >
+      </div>
+      <div class="product-info">
+        <h2>OUTERWEAR</h2>
+        <a href="{{ section.settings.product3_url }}" class="shop-now">
+          SHOP NOW
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card" data-feature="comfort">
+      <div class="product-image">
+        <img 
+          src="{{ section.settings.product4_image | img_url: '800x' }}"
+          srcset="{{ section.settings.product4_image | img_url: '800x' }} 800w,
+                  {{ section.settings.product4_image | img_url: '1200x' }} 1200w"
+          sizes="(max-width: 768px) 100vw, 25vw"
+          loading="lazy"
+          width="800"
+          height="1067"
+          alt="Product 4"
+        >
+      </div>
+      <div class="product-info">
+        <h2>ACCESSORIES</h2>
+        <a href="{{ section.settings.product4_url }}" class="shop-now">
+          SHOP NOW
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Category Showcase",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "product1_image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "product1_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Product 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "product2_image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "product2_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Product 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "product3_image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "product3_url",
+      "label": "URL"
+    },
+    {
+      "type": "header",
+      "content": "Product 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "product4_image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "product4_url",
+      "label": "URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Showcase",
+      "category": "Collections"
+    }
+  ]
+}
+{% endschema %} 

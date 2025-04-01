@@ -1,0 +1,226 @@
+.accessories-grid {
+    padding: 60px 0;
+  }
+  
+  .accessories-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  .view-all-link {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .view-all-link:hover {
+    opacity: 0.7;
+  }
+  
+  .arrow-icon {
+    margin-left: 8px;
+  }
+  
+  .products-grid {
+    position: relative;
+  }
+  
+  .products-container {
+    display: grid;
+    grid-template-columns: repeat(var(--products-per-row), 1fr);
+    gap: 30px;
+  }
+  
+  .carousel-enabled {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .carousel-enabled::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .carousel-enabled .product-card {
+    flex: 0 0 calc((100% - (var(--products-per-row) - 1) * 30px) / var(--products-per-row));
+    scroll-snap-align: start;
+  }
+  
+  .product-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-image-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  
+  .product-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card:hover .product-image-wrapper img {
+    transform: scale(1.05);
+  }
+  
+  .quick-view-button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #000000;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .product-card:hover .quick-view-button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .product-info {
+    padding: 20px;
+  }
+  
+  .category-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #666666;
+    margin-bottom: 8px;
+  }
+  
+  .product-name {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+  }
+  
+  .product-price {
+    font-size: 14px;
+    color: #666666;
+  }
+  
+  .add-to-cart-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    padding: 12px;
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .product-card:hover .add-to-cart-button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #333333;
+  }
+  
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carousel-button.prev {
+    left: -20px;
+  }
+  
+  .carousel-button.next {
+    right: -20px;
+  }
+  
+  .carousel-button:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (max-width: 1024px) {
+    .products-container {
+      --products-per-row: 2;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .accessories-container {
+      padding: 0 20px;
+    }
+  
+    .products-container {
+      --products-per-row: 1;
+      gap: 20px;
+    }
+  
+    .carousel-button {
+      display: none;
+    }
+  }
+  

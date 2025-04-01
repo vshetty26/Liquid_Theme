@@ -1,0 +1,45 @@
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "text",
+      "id": "hero_text",
+      "label": "Main Heading",
+      "default": "Your Gym Clothing"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="hero-banner">
+  <div class="hero-image" style="background-image: url('{{ section.settings.hero_image | img_url: 'master' }}');">
+    <h1>{{ section.settings.hero_text }}</h1>
+  </div>
+</section>
+
+<style>
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-banner h1 {
+  font-size: 4rem;
+  color: #000;
+}
+</style>

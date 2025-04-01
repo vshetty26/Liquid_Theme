@@ -1,0 +1,64 @@
+{{ 'sticky-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="sticky-footer">
+  <div class="footer-content">
+    <div class="footer-column categories-column">
+      <h3 class="footer-heading">CATEGORIES</h3>
+      <ul class="footer-links">
+        <li><a href="/collections/all">ALL</a></li>
+        <li><a href="/collections/tops">TOPS</a></li>
+        <li><a href="/collections/bottoms">BOTTOMS</a></li>
+        <li><a href="/collections/outerwear">OUTERWEAR</a></li>
+        <li><a href="/collections/accessories">ACCESSORIES</a></li>
+        <li><a href="/collections/new-arrivals">NEW ARRIVALS</a></li>
+        <li><a href="/collections/best-sellers">BEST SELLERS</a></li>
+        <li><a href="/collections/sale">SALE</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-column support-column">
+      <h3 class="footer-heading">SUPPORT</h3>
+      <ul class="footer-links">
+        <li><a href="/account">MY ACCOUNT</a></li>
+        <li><a href="/pages/payment-methods">PAYMENT METHODS</a></li>
+        <li><a href="/pages/returns">RETURNS & REFUNDS</a></li>
+        <li><a href="/pages/shipping">SHIPPING & DELIVERY</a></li>
+        <li><a href="/pages/terms">TERMS & CONDITIONS</a></li>
+        <li><a href="/pages/privacy-policy">PRIVACY POLICY</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-column about-column">
+      <h3 class="footer-heading">ABOUT</h3>
+      <ul class="footer-links">
+        <li><a href="/pages/about">ABOUT AXIOM</a></li>
+        <li><a href="/blogs/journal">JOURNAL</a></li>
+        <li><a href="/pages/contact">CONTACT</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-column social-column">
+      <h3 class="footer-heading">SOCIAL MEDIA</h3>
+      <ul class="footer-links">
+        <li><a href="https://instagram.com" target="_blank">INSTAGRAM</a></li>
+        <li><a href="https://twitter.com" target="_blank">X / TWITTER</a></li>
+        <li><a href="https://youtube.com" target="_blank">YOUTUBE</a></li>
+        <li><a href="https://facebook.com" target="_blank">FACEBOOK</a></li>
+        <li><a href="https://twitch.tv" target="_blank">TWITCH</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Sticky Footer",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Sticky Footer",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %} 

@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Almonte';
+    src: url('almonte[1].ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Anton';
+    src: url('Anton-Regular[1].ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  } 

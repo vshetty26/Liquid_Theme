@@ -1,0 +1,82 @@
+{{ 'video-collection-feature.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'video-collection-feature.js' | asset_url }}" defer></script>
+
+<div class="video-collection-section" {% if section.settings.collection_link != blank %}data-collection-link="{{ section.settings.collection_link }}"{% endif %}>
+  <!-- Pink dot in the corner -->
+  <div class="corner-dot"></div>
+  
+  <!-- Center video container with gray background -->
+  <div class="center-video-container">
+    <!-- NEW text at the top right of the video container -->
+    <div class="new-badge">NEW</div>
+    
+    {% if section.settings.video != blank %}
+      <video 
+        class="feature-video" 
+        autoplay 
+        loop 
+        muted 
+        playsinline
+        poster="{{ section.settings.video_poster | img_url: 'master' }}"
+      >
+        <source src="{{ section.settings.video }}" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+    {% else %}
+      <div class="video-placeholder">
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {% endif %}
+  </div>
+  
+  <!-- Overlapping collection text -->
+  <div class="collection-text-container">
+    <div class="collection-text collection-text-back">
+      COLLECTION
+    </div>
+    <div class="collection-text collection-text-middle">
+      COLLECTION
+    </div>
+    <div class="collection-text collection-text-front">
+      COLLECTION
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video Collection Feature",
+  "settings": [
+    {
+      "type": "url",
+      "id": "video",
+      "label": "Video URL",
+      "info": "Upload a WEBM video to your file manager and paste the URL here. Gray background will be used."
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Video Poster Image",
+      "info": "Shown while the video is loading"
+    },
+    {
+      "type": "text",
+      "id": "collection_name",
+      "label": "Collection Name",
+      "default": "Nueno MetalX"
+    },
+    {
+      "type": "url",
+      "id": "collection_link",
+      "label": "Collection Link",
+      "info": "Link to navigate to when the cursor is clicked"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Collection Feature",
+      "category": "Custom Content"
+    }
+  ]
+}
+{% endschema %} 

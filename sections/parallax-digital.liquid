@@ -1,0 +1,118 @@
+{{ 'parallax-digital.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parallax-digital.js' | asset_url }}" defer="defer"></script>
+
+<div class="parallax-digital-section section-{{ section.id }}" id="parallax-digital-{{ section.id }}">
+  <div class="parallax-container">
+    <div class="center-image-container">
+      {%- if section.settings.image != blank -%}
+        <img
+          srcset="{%- if section.settings.image.width >= 375 -%}{{ section.settings.image | image_url: width: 375 }} 375w,{%- endif -%}
+            {%- if section.settings.image.width >= 750 -%}{{ section.settings.image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | image_url: width: 1100 }} 1100w,{%- endif -%}
+            {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | image_url: width: 1500 }} 1500w,{%- endif -%}"
+          sizes="(min-width: 1100px) 550px, (min-width: 750px) 500px, 400px"
+          src="{{ section.settings.image | image_url: width: 750 }}"
+          loading="lazy"
+          alt="{{ section.settings.image.alt | escape }}"
+          class="center-image"
+        >
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg center-image' }}
+      {%- endif -%}
+    </div>
+    
+    <div class="parallax-text-wrapper">
+      <div class="text-row where-text">
+        <span class="large-text">{{ section.settings.text_top | default: 'WHERE' }}</span>
+      </div>
+      
+      <div class="text-row digital-text">
+        <span class="large-text digital">{{ section.settings.text_digital | default: 'DIGITAL' }}</span>
+      </div>
+      
+      <div class="text-row meets-text">
+        <span class="large-text">{{ section.settings.text_meets | default: 'MEETS' }}</span>
+      </div>
+      
+      <div class="text-row fashion-text">
+        <span class="large-text">{{ section.settings.text_bottom | default: 'FASHION' }}</span>
+      </div>
+    </div>
+    
+    {% if section.settings.small_text_top != blank or section.settings.small_text_bottom != blank %}
+      <div class="small-text-container">
+        {% if section.settings.small_text_top != blank %}
+          <div class="small-text top">{{ section.settings.small_text_top }}</div>
+        {% endif %}
+        
+        {% if section.settings.small_text_bottom != blank %}
+          <div class="small-text bottom">{{ section.settings.small_text_bottom }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Digital Meets Fashion",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Center Image"
+    },
+    {
+      "type": "text",
+      "id": "text_top",
+      "label": "Top Text",
+      "default": "WHERE"
+    },
+    {
+      "type": "text",
+      "id": "text_digital",
+      "label": "Digital Text",
+      "default": "DIGITAL"
+    },
+    {
+      "type": "text",
+      "id": "text_meets",
+      "label": "Meets Text",
+      "default": "MEETS"
+    },
+    {
+      "type": "text",
+      "id": "text_bottom",
+      "label": "Bottom Text",
+      "default": "FASHION"
+    },
+    {
+      "type": "text",
+      "id": "small_text_top",
+      "label": "Small Text Top",
+      "default": "DIGITAL FASHION"
+    },
+    {
+      "type": "text",
+      "id": "small_text_bottom",
+      "label": "Small Text Bottom",
+      "default": "NUENO"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Digital Meets Fashion",
+      "settings": {
+        "text_top": "WHERE",
+        "text_digital": "DIGITAL",
+        "text_meets": "MEETS",
+        "text_bottom": "FASHION",
+        "small_text_top": "DIGITAL FASHION",
+        "small_text_bottom": "NUENO"
+      }
+    }
+  ]
+}
+{% endschema %} 

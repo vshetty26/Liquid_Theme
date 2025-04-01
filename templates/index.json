@@ -1,0 +1,128 @@
+
+ {
+    "sections": {
+      "footer_minimal_Cy8J4A": {
+        "type": "footer-minimal",
+        "blocks": {
+          "link_XDjfQT": {
+            "type": "link",
+            "settings": {
+              "title": "About",
+              "link": "/pages/about"
+            }
+          },
+          "link_ffLK3E": {
+            "type": "link",
+            "settings": {
+              "title": "Contact",
+              "link": "/pages/contact"
+            }
+          },
+          "link_7qWj9f": {
+            "type": "link",
+            "settings": {
+              "title": "About Us",
+              "link": ""
+            }
+          },
+          "link_yJcrMN": {
+            "type": "link",
+            "settings": {
+              "title": "Privacy Policy",
+              "link": "/policies/privacy-policy"
+            }
+          }
+        },
+        "block_order": [
+          "link_XDjfQT",
+          "link_ffLK3E",
+          "link_7qWj9f",
+          "link_yJcrMN"
+        ],
+        "disabled": true,
+        "settings": {
+          "background_color": "#ffffff",
+          "show_logo": true,
+          "logo": "shopify://shop_images/Untitled_design_1_1.png",
+          "show_social": true,
+          "instagram_link": "",
+          "twitter_link": "",
+          "show_copyright": true,
+          "copyright_text": "© 2025 Your Store. All rights reserved."
+        }
+      },
+      "parallax_digital_WmtmTb": {
+        "type": "parallax-digital",
+        "settings": {
+          "image": "shopify://shop_images/header_1x_76de25fb-f345-438d-b6ee-378271a2ff8a.jpg",
+          "text_top": "WHERE",
+          "text_digital": "DIGITAL",
+          "text_meets": "MEETS",
+          "text_bottom": "FASHION",
+          "small_text_top": "DIGITAL FASHION",
+          "small_text_bottom": "NUENO"
+        }
+      },
+      "about_section_6pkKGg": {
+        "type": "about-section",
+        "settings": {
+          "heading": "WE ARE A DIGITAL FASHION HOUSE THAT MIXES TECHNOLOGY AND CREATIVITY TO TAKE FASHION BEYOND ONLY-PHYSICAL EXPERIENCES.",
+          "read_more_text": "Read more about us",
+          "read_less_text": "Less",
+          "paragraph_1": "We have established Nueno Concept as the first Polish brand of clothes that don't exist & Nueno Lab to conduct digital experiments with fashion creators. We want to inspire you and pave the way for a digital fashion future.",
+          "paragraph_2": "Digitally tailored clothes, AR extended clothes, online trying-ons are only small pieces of the future where Nueno will lead your brand."
+        }
+      },
+      "collection_slider_iAC9q6": {
+        "type": "collection-slider",
+        "settings": {
+          "header_text": "OUR DIGITAL COLLECTION",
+          "show_drag_circle": false,
+          "image_1": "shopify://shop_images/1_2x_18c4f8c1-958a-4d19-8632-fbe868817d29.jpg",
+          "image_2": "shopify://shop_images/2_2x_963dc7cf-0b12-448b-8a3d-beea43dac348.jpg",
+          "image_3": "shopify://shop_images/3_2x_c8fa63f3-284a-4b2a-906c-68fa7d1a307b.jpg",
+          "image_4": "shopify://shop_images/4_2x_adb590a3-2cc7-40b2-8d57-7d29d54b4bcd.jpg",
+          "image_5": "shopify://shop_images/5_2x_1376935b-9a96-42ad-8f24-104e2d3bc1a8.jpg",
+          "image_6": "shopify://shop_images/6_2x_77826d5c-3fda-4040-8eec-d12d918f9ad3.jpg"
+        }
+      },
+      "video_collection_feature_T9RaJp": {
+        "type": "video-collection-feature",
+        "settings": {
+          "video": "https://cdn.shopify.com/videos/c/o/v/c77b34684f364874bde0b26b95d5f564.webm",
+          "collection_name": "Nueno MetalX",
+          "collection_link": ""
+        }
+      },
+      "concept_feature_Agax7V": {
+        "type": "concept-feature",
+        "settings": {
+          "concept_image": "shopify://shop_images/concept_1x_50fdb3a4-39b5-4317-a863-fa2335a4c751.jpg",
+          "concept_name": "Nueno Concept",
+          "heading_primary": "DIGITAL FASHION IS A NEW CHAPTER",
+          "paragraph_1": "THERE IS NOTHING MORE IMPORTANT THAN THE ACT OF PUSHING YOUR IMAGINATION FORWARD.",
+          "paragraph_2": "WE CREATED DIGITAL CLOTHES THAT EXIST ONLY IN THE DIGITAL WORLD - AND ALL THAT WE USED TO DO SO IS OUR CREATIVITY AND THE DIGITAL CLOTHS.",
+          "concept_link": ""
+        }
+      },
+      "text_animation_feature_X6k4x9": {
+        "type": "text-animation-feature",
+        "settings": {}
+      },
+      "sticky_footer_bybnct": {
+        "type": "sticky-footer",
+        "settings": {}
+      }
+    },
+    "order": [
+      "footer_minimal_Cy8J4A",
+      "parallax_digital_WmtmTb",
+      "about_section_6pkKGg",
+      "collection_slider_iAC9q6",
+      "video_collection_feature_T9RaJp",
+      "concept_feature_Agax7V",
+      "text_animation_feature_X6k4x9",
+      "sticky_footer_bybnct"
+    ]
+  }
+  

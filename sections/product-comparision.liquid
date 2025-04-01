@@ -1,0 +1,120 @@
+{{ 'product-comparison.css' | asset_url | stylesheet_tag }}
+
+<div class="product-comparison">
+  <!-- Left Product (Pants) -->
+  <div class="comparison-item">
+    <h2 class="product-title">{{ section.settings.pants_title }}</h2>
+    <div class="product-image-container">
+      <img 
+        src="{{ section.settings.pants_image | img_url: '1200x' }}"
+        srcset="{{ section.settings.pants_image | img_url: '800x' }} 800w,
+                {{ section.settings.pants_image | img_url: '1200x' }} 1200w,
+                {{ section.settings.pants_image | img_url: '1600x' }} 1600w"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        width="1200"
+        height="1600"
+        loading="eager"
+        alt="{{ section.settings.pants_title }}"
+        class="product-image"
+      >
+      <div class="focal-point" style="left: 70%; top: 45%;">
+        <div class="focal-tooltip">
+          <span>{{ section.settings.pants_tooltip }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Product (Jacket) -->
+  <div class="comparison-item">
+    <h2 class="product-title">{{ section.settings.jacket_title }}</h2>
+    <div class="product-image-container">
+      <img 
+        src="{{ section.settings.jacket_image | img_url: '1200x' }}"
+        srcset="{{ section.settings.jacket_image | img_url: '800x' }} 800w,
+                {{ section.settings.jacket_image | img_url: '1200x' }} 1200w,
+                {{ section.settings.jacket_image | img_url: '1600x' }} 1600w"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        width="1200"
+        height="1600"
+        loading="eager"
+        alt="{{ section.settings.jacket_title }}"
+        class="product-image"
+      >
+      <div class="focal-point" style="left: 75%; top: 35%;">
+        <div class="focal-tooltip">
+          <span>{{ section.settings.jacket_tooltip }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buy Template Button -->
+  <a href="{{ section.settings.template_url }}" class="buy-template-button">
+    Buy Template
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  </a>
+</div>
+
+{% schema %}
+{
+  "name": "Product Comparison",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Product (Pants)"
+    },
+    {
+      "type": "image_picker",
+      "id": "pants_image",
+      "label": "Pants Image"
+    },
+    {
+      "type": "text",
+      "id": "pants_title",
+      "label": "Pants Title",
+      "default": "Performance Pants"
+    },
+    {
+      "type": "text",
+      "id": "pants_tooltip",
+      "label": "Pants Tooltip Text",
+      "default": "Premium stretch fabric for maximum comfort"
+    },
+    {
+      "type": "header",
+      "content": "Right Product (Jacket)"
+    },
+    {
+      "type": "image_picker",
+      "id": "jacket_image",
+      "label": "Jacket Image"
+    },
+    {
+      "type": "text",
+      "id": "jacket_title",
+      "label": "Jacket Title",
+      "default": "Weather-Resistant Jacket"
+    },
+    {
+      "type": "text",
+      "id": "jacket_tooltip",
+      "label": "Jacket Tooltip Text",
+      "default": "Water-resistant fabric with breathable technology"
+    },
+    {
+      "type": "url",
+      "id": "template_url",
+      "label": "Buy Template URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Comparison",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %} 
