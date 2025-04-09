@@ -3,31 +3,44 @@
 
 <div class="about-section" id="about-section">
   <div class="about-container">
+    <!-- Left side - Sticky Image -->
+    <div class="about-image-container">
+      {% if section.settings.about_image != blank %}
+        <img 
+          src="{{ section.settings.about_image | img_url: 'master' }}"
+          alt="About Us"
+          class="about-image"
+          loading="lazy"
+        >
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg about-image' }}
+      {% endif %}
+      
+      <div class="explore-circle">
+        <div class="explore-circle-inner">
+          <span class="explore-text">Explore</span>
+          <span class="concept-name">Nueno Concept</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side - Scrolling Content -->
     <div class="about-content">
       <div class="about-header">
-        <div class="dot-indicator"></div>
-        <div class="header-text">
-          <h2 class="header-title">
-            {{ section.settings.heading | replace: 'DIGITAL FASHION HOUSE', '<span class="digital-fashion">DIGITAL FASHION HOUSE</span>' }}
-          </h2>
-          
-          <div class="read-more-container">
-            <button class="read-more-btn more-btn" id="read-more-btn">{{ section.settings.read_more_text }}</button>
-            <button class="read-more-btn less-btn" id="read-less-btn">{{ section.settings.read_less_text }}</button>
-          </div>
+        <h2 class="header-title">
+          {{ section.settings.heading | replace: 'DIGITAL FASHION HOUSE', '<span class="digital-fashion">DIGITAL FASHION HOUSE</span>' }}
+        </h2>
+        
+        <div class="header-subtitle">
+          <span class="discover-text">DISCOVER</span>
+          <span class="brand-name">NUENO CONCEPT</span>
         </div>
       </div>
       
-      <div class="hidden-content" id="hidden-content">
-        <div class="about-description">
-          <p class="description-text">
-            {{ section.settings.paragraph_1 }}
-          </p>
-          
-          <p class="description-text">
-            {{ section.settings.paragraph_2 }}
-          </p>
-        </div>
+      <div class="about-text-content">
+        <p class="about-paragraph">{{ section.settings.paragraph_1 }}</p>
+        <p class="about-paragraph">{{ section.settings.paragraph_2 }}</p>
+        <p class="about-paragraph">EXPLORE THE FULL STORY OF CLOTHES THAT DON'T EXIST</p>
       </div>
     </div>
   </div>
@@ -38,44 +51,32 @@
   "name": "About Section",
   "settings": [
     {
-      "type": "header",
-      "content": "About Section Settings"
+      "type": "image_picker",
+      "id": "about_image",
+      "label": "About Image"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "WE ARE A DIGITAL FASHION HOUSE THAT MIXES TECHNOLOGY AND CREATIVITY TO TAKE FASHION BEYOND ONLY-PHYSICAL EXPERIENCES."
-    },
-    {
-      "type": "text",
-      "id": "read_more_text",
-      "label": "Read More Button Text",
-      "default": "Read more about us"
-    },
-    {
-      "type": "text",
-      "id": "read_less_text",
-      "label": "Read Less Button Text",
-      "default": "Less"
+      "default": "DIGITAL FASHION IS A NEW CHAPTER"
     },
     {
       "type": "textarea",
       "id": "paragraph_1",
       "label": "First Paragraph",
-      "default": "We have established Nueno Concept as the first Polish brand of clothes that don't exist & Nueno Lab to conduct digital experiments with fashion creators. We want to inspire you and pave the way for a digital fashion future."
+      "default": "THERE IS NOTHING MORE IMPORTANT THAN THE ACT OF PUSHING YOUR IMAGINATION FORWARD."
     },
     {
       "type": "textarea",
       "id": "paragraph_2",
       "label": "Second Paragraph",
-      "default": "Digitally tailored clothes, AR extended clothes, online trying-ons are only small pieces of the future where Nueno will lead your brand."
+      "default": "WE CREATED DIGITAL CLOTHES THAT EXIST ONLY IN THE DIGITAL WORLD - AND ALL THAT WE USED TO DO SO IS OUR CREATIVITY AND THE DIGITAL CLOTHS."
     }
   ],
   "presets": [
     {
-      "name": "About Section",
-      "category": "Custom Content"
+      "name": "About Section"
     }
   ]
 }

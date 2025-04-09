@@ -1,0 +1,339 @@
+.bento-products-section {
+  padding: 4rem 2rem;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.bento-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(200px, auto);
+  gap: 1.5rem;
+  position: relative;
+}
+
+/* Bento Item Styling */
+.bento-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: #1e1e1e;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bento-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Staggered Grid Placement */
+.bento-item-1 {
+  grid-column: span 5;
+  grid-row: span 2;
+}
+
+.bento-item-2 {
+  grid-column: span 4;
+  grid-row: span 1;
+}
+
+.bento-item-3 {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+
+.bento-item-4 {
+  grid-column: span 4;
+  grid-row: span 1;
+}
+
+.bento-item-5 {
+  grid-column: span 5;
+  grid-row: span 2;
+}
+
+/* Card Styling */
+.bento-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-image-carousel {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  background-color: #000000;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.dot.active {
+  background-color: #ffffff;
+  transform: scale(1.2);
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-nav:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-prev {
+  left: 1rem;
+}
+
+.carousel-next {
+  right: 1rem;
+}
+
+.bento-image-carousel:hover .carousel-nav {
+  opacity: 1;
+}
+
+.bento-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex-grow: 1;
+  background-color: #1e1e1e;
+}
+
+.bento-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  color: #ffffff;
+}
+
+.bento-price {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #cccccc;
+}
+
+.bento-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  border: 1px solid transparent;
+}
+
+.bento-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+/* Placeholder Styling */
+.bento-card.placeholder {
+  background-color: #1a1a1a;
+}
+
+.bento-image-placeholder {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  background-color: #2a2a2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-svg {
+  width: 50%;
+  height: 50%;
+  opacity: 0.3;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .bento-item-1 {
+    grid-column: span 6;
+  }
+  
+  .bento-item-2 {
+    grid-column: span 3;
+  }
+  
+  .bento-item-3 {
+    grid-column: span 3;
+  }
+  
+  .bento-item-4 {
+    grid-column: span 3;
+  }
+  
+  .bento-item-5 {
+    grid-column: span 6;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bento-products-section {
+    padding: 3rem 1.5rem;
+  }
+  
+  .bento-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+  
+  .bento-item-1 {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+  
+  .bento-item-2 {
+    grid-column: span 3;
+    grid-row: span 1;
+  }
+  
+  .bento-item-3 {
+    grid-column: span 3;
+    grid-row: span 1;
+  }
+  
+  .bento-item-4 {
+    grid-column: span 3;
+    grid-row: span 1;
+  }
+  
+  .bento-item-5 {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+  
+  .bento-title {
+    font-size: 1.1rem;
+  }
+  
+  .bento-price {
+    font-size: 1rem;
+  }
+  
+  .bento-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .carousel-nav {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .bento-products-section {
+    padding: 2rem 1rem;
+  }
+  
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .bento-item-1,
+  .bento-item-2,
+  .bento-item-3,
+  .bento-item-4,
+  .bento-item-5 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  
+  .bento-content {
+    padding: 1rem;
+  }
+  
+  .carousel-dots {
+    padding: 0.3rem 0.8rem;
+  }
+  
+  .dot {
+    width: 6px;
+    height: 6px;
+  }
+} 

@@ -4,29 +4,51 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="">
+    <meta name="theme-color" content="#121212">
     <link rel="canonical" href="{{ canonical_url }}">
+    
+    {%- if settings.favicon != blank -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- endif -%}
 
-    <title>{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
 
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
+
+    {{ 'loading-screen.css' | asset_url | stylesheet_tag }}
+    {{ 'bento-products.css' | asset_url | stylesheet_tag }}
+    {{ 'concept-feature.css' | asset_url | stylesheet_tag }}
+    {{ 'about-section.css' | asset_url | stylesheet_tag }}
+    {{ 'collection-slider.css' | asset_url | stylesheet_tag }}
+    
+    <script src="{{ 'loading-screen.js' | asset_url }}" defer></script>
+    <script src="{{ 'bento-products.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
 
-    {{ 'theme.js' | asset_url | script_tag }}
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
   </head>
 
-  <body>
-    {% section 'header' %}
+  <body class="gradient">
+    {% render 'loading-screen' %}
 
-    <main role="main" id="MainContent">
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+      {{ "accessibility.skip_to_text" | t }}
+    </a>
+
+    <div id="MainContent" class="content-for-layout" role="main" id="MainContent">
       {{ content_for_layout }}
-    </main>
+    </div>
 
     {% section 'footer' %}
   </body>

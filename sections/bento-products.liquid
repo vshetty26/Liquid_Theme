@@ -1,0 +1,223 @@
+{{ 'bento-products.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'bento-products.js' | asset_url }}" defer></script>
+
+<div class="bento-products-section" data-section-id="{{ section.id }}" data-section-type="bento-products">
+  <div class="bento-container">
+    <div class="bento-grid">
+      {% for block in section.blocks %}
+        {% assign product = all_products[block.settings.product] %}
+        {% if product != blank %}
+          <div class="bento-item bento-item-{{ forloop.index }}" {{ block.shopify_attributes }}>
+            <div class="bento-card">
+              <div class="bento-image-carousel" data-carousel-id="{{ block.id }}">
+                {% if product.featured_image != blank %}
+                  <div class="carousel-slide active">
+                    <img 
+                      src="{{ product.featured_image | img_url: '800x' }}"
+                      alt="{{ product.featured_image.alt | escape }}"
+                      loading="lazy"
+                      width="{{ product.featured_image.width }}"
+                      height="{{ product.featured_image.height }}"
+                    >
+                  </div>
+                {% endif %}
+                
+                {% if product.images[1] != blank %}
+                  <div class="carousel-slide">
+                    <img 
+                      src="{{ product.images[1] | img_url: '800x' }}"
+                      alt="{{ product.images[1].alt | escape }}"
+                      loading="lazy"
+                      width="{{ product.images[1].width }}"
+                      height="{{ product.images[1].height }}"
+                    >
+                  </div>
+                {% endif %}
+                
+                {% if product.images[2] != blank %}
+                  <div class="carousel-slide">
+                    <img 
+                      src="{{ product.images[2] | img_url: '800x' }}"
+                      alt="{{ product.images[2].alt | escape }}"
+                      loading="lazy"
+                      width="{{ product.images[2].width }}"
+                      height="{{ product.images[2].height }}"
+                    >
+                  </div>
+                {% endif %}
+                
+                <div class="carousel-nav carousel-prev">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                
+                <div class="carousel-nav carousel-next">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 6L15 12L9 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                
+                <div class="carousel-dots">
+                  <span class="dot active" data-slide="0"></span>
+                  <span class="dot" data-slide="1"></span>
+                  {% if product.images[2] != blank %}
+                    <span class="dot" data-slide="2"></span>
+                  {% endif %}
+                </div>
+              </div>
+              
+              <div class="bento-content">
+                <h3 class="bento-title">{{ product.title }}</h3>
+                <div class="bento-price">{{ product.price | money }}</div>
+                <a href="{{ product.url }}" class="bento-button">Buy Now</a>
+              </div>
+            </div>
+          </div>
+        {% else %}
+          <div class="bento-item bento-item-{{ forloop.index }}" {{ block.shopify_attributes }}>
+            <div class="bento-card placeholder">
+              <div class="bento-image-placeholder">
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="bento-content">
+                <h3 class="bento-title">Product Title</h3>
+                <div class="bento-price">$99.99</div>
+                <a href="#" class="bento-button">Buy Now</a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize carousels
+    const carousels = document.querySelectorAll('.bento-image-carousel');
+    
+    carousels.forEach(carousel => {
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const dots = carousel.querySelectorAll('.dot');
+      const prevBtn = carousel.querySelector('.carousel-prev');
+      const nextBtn = carousel.querySelector('.carousel-next');
+      
+      if (slides.length > 1) {
+        // Auto-rotate slides
+        let currentSlide = 0;
+        let interval;
+        
+        const showSlide = (index) => {
+          slides.forEach(slide => slide.classList.remove('active'));
+          dots.forEach(dot => dot.classList.remove('active'));
+          
+          slides[index].classList.add('active');
+          dots[index].classList.add('active');
+        };
+        
+        const nextSlide = () => {
+          currentSlide = (currentSlide + 1) % slides.length;
+          showSlide(currentSlide);
+        };
+        
+        const prevSlide = () => {
+          currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+          showSlide(currentSlide);
+        };
+        
+        // Set up click events for dots
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+            resetInterval();
+          });
+        });
+        
+        // Set up navigation buttons
+        if (prevBtn) {
+          prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevSlide();
+            resetInterval();
+          });
+        }
+        
+        if (nextBtn) {
+          nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextSlide();
+            resetInterval();
+          });
+        }
+        
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => {
+          clearInterval(interval);
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+          startInterval();
+        });
+        
+        // Reset interval function
+        function resetInterval() {
+          clearInterval(interval);
+          startInterval();
+        }
+        
+        // Start interval function
+        function startInterval() {
+          interval = setInterval(nextSlide, 5000);
+        }
+        
+        // Start auto-rotation
+        startInterval();
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Bento Products",
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bento Products",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 

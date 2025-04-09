@@ -1,35 +1,350 @@
 .concept-feature-section {
-    min-height: 200vh;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+    color: #000000;
+    overflow: hidden;
+}
+
+/* Top Navigation */
+.concept-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     display: flex;
-    position: relative;
-    overflow: hidden;
-    background-color: #ffffff;
-    margin: 0;
-  }
-  
-  /* Left side - Image container */
-  .concept-image-container {
-    width: 50%;
-    height: 100vh;
+    justify-content: space-between;
+    padding: 2rem;
+    z-index: 100;
+    color: #000000;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    mix-blend-mode: difference;
+}
+
+.nav-dot {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 8px;
+    height: 8px;
+    background-color: #D4A5A5;
+    border-radius: 50%;
+}
+
+.concept-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+}
+
+/* Left side - Image with Parallax */
+.concept-image-container {
     position: sticky;
     top: 0;
+    height: 100vh;
     background-color: #f5f5f5;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: none;
-  }
-  
-  .concept-image {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.concept-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  
-  /* Custom cursor */
-  .concept-cursor {
+    object-position: center;
+    transform: scale(1.1);
+    transition: transform 0.5s ease-out;
+}
+
+.concept-image-container:hover .concept-image {
+    transform: scale(1.05);
+}
+
+/* Explore Circle with Animation */
+.explore-circle {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    width: 120px;
+    height: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.5s;
+}
+
+.explore-circle:hover {
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.explore-circle-inner {
+    text-align: center;
+    color: #ffffff;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.explore-circle:hover .explore-circle-inner {
+    transform: translateY(-2px);
+}
+
+.explore-text {
+    display: block;
+    font-size: 1rem;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.concept-name {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Right side content with reveal animations */
+.concept-content {
+    position: relative;
+    padding: 6rem 4rem;
+    min-height: 100vh;
+    opacity: 0;
+    animation: fadeIn 1s forwards 0.2s;
+}
+
+/* Background Text with Parallax */
+.background-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 15vw;
+    line-height: 0.8;
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+    z-index: 1;
+    transform: translateZ(-10px);
+    will-change: transform;
+}
+
+.text-conc {
+    text-align: right;
+}
+
+.text-ept {
+    text-align: right;
+}
+
+/* Content Reveal Animations */
+.concept-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 2rem;
+    max-width: 80%;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards 0.4s;
+}
+
+.concept-subtitle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards 0.6s;
+}
+
+.discover {
+    font-style: italic;
+    color: #666666;
+}
+
+.brand {
+    font-weight: 700;
+}
+
+.concept-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.concept-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.concept-text p:nth-child(1) {
+    animation: fadeInUp 0.8s forwards 0.8s;
+}
+
+.concept-text p:nth-child(2) {
+    animation: fadeInUp 0.8s forwards 1s;
+}
+
+.concept-text p:nth-child(3) {
+    animation: fadeInUp 0.8s forwards 1.2s;
+}
+
+/* Cookie Consent */
+.cookie-consent {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: rgba(212, 165, 165, 0.9);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transform: translateY(100px);
+    opacity: 0;
+    animation: slideUp 0.5s forwards 2s;
+}
+
+.cookie-text {
+    font-size: 0.9rem;
+    color: #000;
+}
+
+.cookie-button {
+    padding: 0.5rem 1rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.cookie-button:hover {
+    opacity: 0.8;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+    .concept-container {
+        grid-template-columns: 1fr;
+    }
+
+    .concept-image-container {
+        position: relative;
+        height: 60vh;
+    }
+
+    .background-text {
+        font-size: 20vw;
+    }
+
+    .concept-title {
+        font-size: 2.5rem;
+        max-width: 100%;
+    }
+
+    .cookie-consent {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .concept-nav {
+        padding: 1.5rem;
+    }
+
+    .concept-content {
+        padding: 3rem 2rem;
+    }
+
+    .concept-title {
+        font-size: 2rem;
+    }
+
+    .concept-text p {
+        font-size: 1.1rem;
+    }
+
+    .explore-circle {
+        width: 100px;
+        height: 100px;
+        bottom: 2rem;
+        left: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .concept-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .concept-title {
+        font-size: 1.8rem;
+    }
+
+    .concept-text p {
+        font-size: 1rem;
+    }
+
+    .explore-circle {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Custom cursor */
+.concept-cursor {
     width: 8px;
     height: 8px;
     background-color: #fff;
@@ -41,160 +356,19 @@
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.2s ease;
     transform: translate(-50%, -50%) scale(0);
-  }
-  
-  .concept-cursor.active {
+}
+
+.concept-cursor.active {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-  }
-  
-  .concept-cursor.clicking {
+}
+
+.concept-cursor.clicking {
     transform: translate(-50%, -50%) scale(0.8);
-  }
-  
-  /* Explore circle overlay */
-  .concept-explore-circle {
-    position: fixed;
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 192, 203, 0.3);
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 2;
-  }
-  
-  .concept-explore-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .concept-explore-text {
-    font-size: 15px;
-    font-weight: 300;
-    font-style: italic;
-    margin-bottom: 4px;
-    font-family: serif;
-    color: #fff;
-    mix-blend-mode: difference;
-  }
-  
-  .concept-name {
-    font-size: 13px;
-    color: #fff;
-    mix-blend-mode: difference;
-    opacity: 0.7;
-  }
-  
-  /* Right side - Content container */
-  .concept-content-container {
-    width: 50%;
-    min-height: 200vh;
-    padding: 20vh 5vw;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
-  
-  /* Big CONCEPT text */
-  .concept-big-text,
-  .concept-big-text-second {
-    position: fixed;
-    font-size: 35vw;
-    font-weight: 900;
-    color: rgba(0, 0, 0, 0.03);
-    right: -2vw;
-    line-height: 0.75;
-    z-index: 0;
-    white-space: nowrap;
-    transform: translateY(0);
-    transition: transform 0.1s ease;
-    letter-spacing: -0.05em;
-    pointer-events: none;
-  }
-  
-  .concept-big-text {
-    top: 5vh;
-  }
-  
-  .concept-big-text-second {
-    top: 35vh;
-  }
-  
-  /* Heading styles */
-  .concept-heading-container {
-    margin-bottom: 15vh;
-    position: relative;
-    z-index: 1;
-    transform: translateY(0);
-    transition: transform 0.1s ease;
-  }
-  
-  .concept-heading-primary {
-    font-size: 3.2vw;
-    font-weight: 600;
-    line-height: 1.1;
-    margin-bottom: 2vh;
-    text-transform: uppercase;
-    letter-spacing: -0.01em;
-    max-width: 90%;
-  }
-  
-  .concept-heading-secondary {
-    display: flex;
-    align-items: baseline;
-    margin-top: 1vh;
-  }
-  
-  .concept-discover {
-    font-size: 1.1rem;
-    font-weight: 400;
-    font-style: italic;
-    margin-right: 12px;
-    color: #000;
-    font-family: serif;
-    opacity: 0.7;
-  }
-  
-  .concept-name-heading {
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    color: #000;
-  }
-  
-  /* Paragraph styles */
-  .concept-text-container {
-    position: relative;
-    z-index: 1;
-    transform: translateY(0);
-    transition: transform 0.1s ease;
-    margin-top: 0;
-  }
-  
-  .concept-paragraph {
-    font-size: 1.35vw;
-    line-height: 1.4;
-    margin-bottom: 5vh;
-    max-width: 85%;
-    letter-spacing: 0;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #000;
-  }
-  
-  /* Small dot in corner */
-  .concept-corner-dot {
+}
+
+/* Small dot in corner */
+.concept-corner-dot {
     position: absolute;
     top: 25px;
     right: 25px;
@@ -203,89 +377,33 @@
     border-radius: 50%;
     background-color: #ff9999;
     opacity: 0.6;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 1200px) {
-    .concept-heading-primary {
-      font-size: 4vw;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .concept-title {
+        font-size: 4vw;
     }
     
-    .concept-paragraph {
-      font-size: 1.6vw;
+    .concept-text p {
+        font-size: 1.6vw;
     }
     
-    .concept-big-text,
-    .concept-big-text-second {
-      font-size: 32vw;
+    .background-text {
+        font-size: 32vw;
     }
-  }
-  
-  @media (max-width: 768px) {
-    .concept-feature-section {
-      flex-direction: column;
-      min-height: auto;
+}
+
+@media (max-width: 480px) {
+    .concept-title {
+        font-size: 7vw;
     }
     
-    .concept-image-container {
-      width: 100%;
-      height: 70vh;
-      position: relative;
+    .concept-text p {
+        font-size: 3.5vw;
     }
     
-    .concept-content-container {
-      width: 100%;
-      min-height: 100vh;
-      padding: 10vh 5vw;
+    .background-text {
+        font-size: 18vw;
     }
-    
-    .concept-heading-primary {
-      font-size: 5vw;
-      max-width: 100%;
-    }
-    
-    .concept-paragraph {
-      font-size: 2.2vw;
-      max-width: 100%;
-    }
-    
-    .concept-big-text,
-    .concept-big-text-second {
-      font-size: 20vw;
-      position: relative;
-      top: 0;
-      right: 0;
-    }
-    
-    .concept-explore-circle {
-      position: absolute;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .concept-heading-primary {
-      font-size: 7vw;
-    }
-    
-    .concept-paragraph {
-      font-size: 3.5vw;
-    }
-    
-    .concept-explore-circle {
-      width: 90px;
-      height: 90px;
-    }
-    
-    .concept-explore-text {
-      font-size: 13px;
-    }
-    
-    .concept-name {
-      font-size: 11px;
-    }
-    
-    .concept-big-text,
-    .concept-big-text-second {
-      font-size: 18vw;
-    }
-  } 
+} 

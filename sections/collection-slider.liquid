@@ -2,12 +2,16 @@
 <script src="{{ 'collection-slider.js' | asset_url }}" defer></script>
 
 <div class="collection-slider-section">
-  <div class="collection-header">
-    <h2 class="collection-title">{{ section.settings.header_text }}</h2>
+  <div class="collection-nav">
+    <div class="nav-left">GLADE</div>
+    <div class="nav-right">
+      <span></span>
+      <div class="nav-dot"></div>
+    </div>
   </div>
-  
+
   <div class="collection-slider-container">
-    {% for i in (1..6) %}
+    {% for i in (1..7) %}
       {% assign image_field = 'image_' | append: i %}
       {% assign image = section.settings[image_field] %}
       
@@ -24,29 +28,18 @@
             {{ 'image' | placeholder_svg_tag: 'collection-image placeholder' }}
           {% endif %}
         </div>
-        
-        <div class="collection-number">
-          <div class="collection-number-text">NO.</div>
-          <div>
-            <span class="collection-number-value">{{ i }}</span>
-            <span class="collection-number-separator">/</span>
-            <span class="collection-number-total">7</span>
-          </div>
-        </div>
-        
-        {% if section.settings.show_drag_circle %}
-          <div class="drag-circle-indicator">
-            <span class="drag-circle-text">Drag</span>
-          </div>
-        {% endif %}
       </div>
     {% endfor %}
   </div>
-  
-  <div class="progress-dots">
-    {% for i in (1..6) %}
-      <div class="progress-dot {% if i == 1 %}active{% endif %}"></div>
-    {% endfor %}
+
+  <div class="drag-cursor">
+    <span class="drag-text">Drag</span>
+  </div>
+
+  <div class="drag-indicator">
+    <div class="drag-line"></div>
+    <div class="drag-line"></div>
+    <div class="drag-line"></div>
   </div>
 </div>
 
@@ -54,19 +47,6 @@
 {
   "name": "Collection Slider",
   "settings": [
-    {
-      "type": "text",
-      "id": "header_text",
-      "label": "Header Text",
-      "default": "OUR DIGITAL COLLECTION"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_drag_circle",
-      "label": "Show Static Drag Circle",
-      "default": true,
-      "info": "Shows a static 'Drag' circle on each slide in addition to the cursor"
-    },
     {
       "type": "header",
       "content": "Slide 1"
@@ -120,12 +100,21 @@
       "type": "image_picker",
       "id": "image_6",
       "label": "Image 6"
+    },
+    {
+      "type": "header",
+      "content": "Slide 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Image 7"
     }
   ],
   "presets": [
     {
       "name": "Collection Slider",
-      "category": "Custom Content"
+      "category": "Image"
     }
   ]
 }

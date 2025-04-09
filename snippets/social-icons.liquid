@@ -1,0 +1,75 @@
+{%- if settings.social_facebook_link != blank
+    or settings.social_instagram_link != blank
+    or settings.social_youtube_link != blank
+    or settings.social_tiktok_link != blank
+    or settings.social_twitter_link != blank
+    or settings.social_pinterest_link != blank
+    or settings.social_snapchat_link != blank
+    or settings.social_tumblr_link != blank
+    or settings.social_vimeo_link != blank -%}
+  <ul class="social-icons list-unstyled">
+    {%- if settings.social_facebook_link != blank -%}
+      <li class="social-icons__item">
+        <a href="{{ settings.social_facebook_link }}" class="social-icons__link" target="_blank" rel="noopener" aria-label="{{ 'general.social.facebook' | t }}">
+          {% render 'icon-facebook' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_instagram_link != blank -%}
+      <li class="social-icons__item">
+        <a href="{{ settings.social_instagram_link }}" class="social-icons__link" target="_blank" rel="noopener" aria-label="{{ 'general.social.instagram' | t }}">
+          {% render 'icon-instagram' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_youtube_link != blank -%}
+      <li class="social-icons__item">
+        <a href="{{ settings.social_youtube_link }}" class="social-icons__link" target="_blank" rel="noopener" aria-label="{{ 'general.social.youtube' | t }}">
+          {% render 'icon-youtube' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_tiktok_link != blank -%}
+      <li class="social-icons__item">
+        <a href="{{ settings.social_tiktok_link }}" class="social-icons__link" target="_blank" rel="noopener" aria-label="{{ 'general.social.tiktok' | t }}">
+          {% render 'icon-tiktok' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_twitter_link != blank -%}
+      <li class="social-icons__item">
+        <a href="{{ settings.social_twitter_link }}" class="social-icons__link" target="_blank" rel="noopener" aria-label="{{ 'general.social.twitter' | t }}">
+          {% render 'icon-twitter' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_pinterest_link != blank -%}
+      <li class="social-icons__item">
+        <a href="{{ settings.social_pinterest_link }}" class="social-icons__link" target="_blank" rel="noopener" aria-label="{{ 'general.social.pinterest' | t }}">
+          {% render 'icon-pinterest' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_snapchat_link != blank -%}
+      <li class="social-icons__item">
+        <a href="{{ settings.social_snapchat_link }}" class="social-icons__link" target="_blank" rel="noopener" aria-label="{{ 'general.social.snapchat' | t }}">
+          {% render 'icon-snapchat' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_tumblr_link != blank -%}
+      <li class="social-icons__item">
+        <a href="{{ settings.social_tumblr_link }}" class="social-icons__link" target="_blank" rel="noopener" aria-label="{{ 'general.social.tumblr' | t }}">
+          {% render 'icon-tumblr' %}
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if settings.social_vimeo_link != blank -%}
+      <li class="social-icons__item">
+        <a href="{{ settings.social_vimeo_link }}" class="social-icons__link" target="_blank" rel="noopener" aria-label="{{ 'general.social.vimeo' | t }}">
+          {% render 'icon-vimeo' %}
+        </a>
+      </li>
+    {%- endif -%}
+  </ul>
+{%- endif -%} 

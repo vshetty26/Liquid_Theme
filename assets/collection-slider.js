@@ -317,4 +317,45 @@ document.addEventListener('DOMContentLoaded', () => {
         checkSectionTransition();
       }
     });
+
+    // Auto-advance slides every 5 seconds if not dragging
+    let autoAdvanceInterval = setInterval(() => {
+      if (!isDragging) {
+        const nextSlide = (currentSlide + 1) % totalSlides;
+        currentSlide = nextSlide;
+        containerTransform = -currentSlide * slideWidth;
+        sliderContainer.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        sliderContainer.style.transform = `translateX(${containerTransform}px)`;
+        updateSlideNumber();
+        
+        // Check for section transition
+        checkSectionTransition();
+      }
+    }, 5000);
+
+    // Clear interval when user interacts with slider
+    sliderSection.addEventListener('mouseenter', () => {
+      clearInterval(autoAdvanceInterval);
+    });
+
+    // Resume auto-advance when user leaves slider
+    sliderSection.addEventListener('mouseleave', () => {
+      autoAdvanceInterval = setInterval(() => {
+        if (!isDragging) {
+          const nextSlide = (currentSlide + 1) % totalSlides;
+          currentSlide = nextSlide;
+          containerTransform = -currentSlide * slideWidth;
+          sliderContainer.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+          sliderContainer.style.transform = `translateX(${containerTransform}px)`;
+          updateSlideNumber();
+          
+          // Check for section transition
+          checkSectionTransition();
+        }
+      }, 5000);
+    });
+
+    // Initialize first slide
+    slides[0].classList.add('active');
+    progressDots[0].classList.add('active');
   }); 

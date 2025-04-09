@@ -1,62 +1,92 @@
 {{ 'concept-feature.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'concept-feature.js' | asset_url }}" defer></script>
 
-<div class="concept-feature-section" {% if section.settings.concept_link != blank %}data-concept-link="{{ section.settings.concept_link }}"{% endif %}>
-  <!-- Custom cursor -->
-  <div class="concept-cursor"></div>
-
-  <!-- Left side - Large image -->
-  <div class="concept-image-container">
-    {% if section.settings.concept_image != blank %}
-      <img 
-        class="concept-image" 
-        src="{{ section.settings.concept_image | img_url: 'master' }}"
-        alt="{{ section.settings.concept_name }}"
-        loading="lazy"
-      >
-    {% else %}
-      <div class="image-placeholder">
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      </div>
-    {% endif %}
-    
-    <!-- Explore circle overlay -->
-    <div class="concept-explore-circle">
-      <div class="concept-explore-inner">
-        <span class="concept-explore-text">Explore</span>
-        <span class="concept-name">{{ section.settings.concept_name }}</span>
-      </div>
-    </div>
+<div class="concept-feature-section" data-scroll-section>
+  <!-- Top Navigation -->
+  <div class="concept-nav">
+    <div class="nav-left">GLADE</div>
+    <div class="nav-dot"></div>
   </div>
-  
-  <!-- Right side - Parallax text content -->
-  <div class="concept-content-container">
-    <!-- Big CONCEPT text -->
-    <div class="concept-big-text">CONC</div>
-    <div class="concept-big-text-second">EPT</div>
-    
-    <div class="concept-heading-container">
-      <h2 class="concept-heading-primary">{{ section.settings.heading_primary }}</h2>
-      <div class="concept-heading-secondary">
-        <span class="concept-discover">DISCOVER</span>
-        <span class="concept-name-heading">{{ section.settings.concept_name }}</span>
-      </div>
-    </div>
-    
-    <div class="concept-text-container">
-      {% if section.settings.paragraph_1 != blank %}
-        <p class="concept-paragraph">{{ section.settings.paragraph_1 }}</p>
+
+  <div class="concept-container">
+    <!-- Left side - Image -->
+    <div class="concept-image-container" data-scroll data-scroll-speed="-1">
+      {% if section.settings.concept_image != blank %}
+        <img 
+          src="{{ section.settings.concept_image | img_url: 'master' }}"
+          alt="{{ section.settings.concept_name }}"
+          class="concept-image"
+          loading="lazy"
+          data-scroll
+          data-scroll-speed="-2"
+        >
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg concept-image' }}
       {% endif %}
       
-      {% if section.settings.paragraph_2 != blank %}
-        <p class="concept-paragraph">{{ section.settings.paragraph_2 }}</p>
-      {% endif %}
+      <div class="explore-circle">
+        <div class="explore-circle-inner">
+          <span class="explore-text">Explore</span>
+          <span class="concept-name">Nueno Concept</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side - Content -->
+    <div class="concept-content">
+      <!-- Background Text -->
+      <div class="background-text" data-scroll data-scroll-speed="2">
+        <div class="text-conc">CONC</div>
+        <div class="text-ept">EPT</div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="content-wrapper" data-scroll data-scroll-speed="1">
+        <h1 class="concept-title">{{ section.settings.heading }}</h1>
+        <div class="concept-subtitle">
+          <span class="discover">DISCOVER</span>
+          <span class="brand">NUENO CONCEPT</span>
+        </div>
+        
+        <div class="concept-text">
+          <p data-scroll data-scroll-speed="0.5">{{ section.settings.paragraph_1 }}</p>
+          <p data-scroll data-scroll-speed="0.7">{{ section.settings.paragraph_2 }}</p>
+          <p data-scroll data-scroll-speed="0.9">{{ section.settings.paragraph_3 }}</p>
+        </div>
+      </div>
     </div>
   </div>
-  
-  <!-- Small dot in top right corner -->
-  <div class="concept-corner-dot"></div>
+
+  <!-- Cookie Consent -->
+  <div class="cookie-consent" id="cookieConsent">
+    <div class="cookie-text">We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</div>
+    <button class="cookie-button" onclick="acceptCookies()">Accept</button>
+  </div>
 </div>
+
+<script>
+  function acceptCookies() {
+    document.getElementById('cookieConsent').style.display = 'none';
+    localStorage.setItem('cookiesAccepted', 'true');
+  }
+
+  // Check if cookies were previously accepted
+  document.addEventListener('DOMContentLoaded', function() {
+    if (!localStorage.getItem('cookiesAccepted')) {
+      document.getElementById('cookieConsent').style.display = 'flex';
+    }
+  });
+
+  // Initialize smooth scroll and parallax
+  document.addEventListener('DOMContentLoaded', function() {
+    const scroll = new LocomotiveScroll({
+      el: document.querySelector('[data-scroll-container]'),
+      smooth: true,
+      multiplier: 1,
+      lerp: 0.1
+    });
+  });
+</script>
 
 {% schema %}
 {
@@ -65,19 +95,12 @@
     {
       "type": "image_picker",
       "id": "concept_image",
-      "label": "Concept Image",
-      "info": "Large image shown on the left side"
+      "label": "Concept Image"
     },
     {
       "type": "text",
-      "id": "concept_name",
-      "label": "Concept Name",
-      "default": "Nueno Concept"
-    },
-    {
-      "type": "text",
-      "id": "heading_primary",
-      "label": "Primary Heading",
+      "id": "heading",
+      "label": "Heading",
       "default": "DIGITAL FASHION IS A NEW CHAPTER"
     },
     {
@@ -93,16 +116,15 @@
       "default": "WE CREATED DIGITAL CLOTHES THAT EXIST ONLY IN THE DIGITAL WORLD - AND ALL THAT WE USED TO DO SO IS OUR CREATIVITY AND THE DIGITAL CLOTHS."
     },
     {
-      "type": "url",
-      "id": "concept_link",
-      "label": "Concept Link",
-      "info": "Link to navigate to when the image is clicked"
+      "type": "text",
+      "id": "paragraph_3",
+      "label": "Third Paragraph",
+      "default": "EXPLORE THE FULL STORY OF CLOTHES THAT DON'T EXIST."
     }
   ],
   "presets": [
     {
-      "name": "Concept Feature",
-      "category": "Custom Content"
+      "name": "Concept Feature"
     }
   ]
 }

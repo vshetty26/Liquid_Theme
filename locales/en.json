@@ -1,0 +1,28 @@
+{
+  "customer": {
+    "log_in": "Log in"
+  },
+  "templates": {
+    "cart": {
+      "cart": "Cart"
+    }
+  },
+  "general": {
+    "search": {
+      "search": "Search"
+    },
+    "cart": {
+      "item_added": "Item added to your cart"
+    },
+    "continue_shopping": "Continue shopping"
+  },
+  "sections": {
+    "cart": {
+      "checkout": "Checkout"
+    }
+  },
+  "accessibility": {
+    "close": "Close",
+    "loading": "Loading..."
+  }
+} 

@@ -1,0 +1,267 @@
+{{ 'bento-grid.css' | asset_url | stylesheet_tag }}
+
+<div class="bento-grid">
+  <div class="bento-grid__container">
+    <!-- First Row: 3 Products -->
+    <div class="bento-grid__item">
+      <div class="product-card">
+        <div class="product-card__image-wrapper">
+          <img 
+            src="{{ section.settings.product_1_image | img_url: 'master' }}"
+            alt="{{ section.settings.product_1_title }}"
+            class="product-card__image"
+            loading="lazy"
+          >
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">{{ section.settings.product_1_title }}</h3>
+          <div class="product-card__price">Rs. {{ section.settings.product_1_price }}</div>
+          <a href="{{ section.settings.product_1_link }}" class="product-card__button">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bento-grid__item">
+      <div class="product-card">
+        <div class="product-card__image-wrapper">
+          <img 
+            src="{{ section.settings.product_2_image | img_url: 'master' }}"
+            alt="{{ section.settings.product_2_title }}"
+            class="product-card__image"
+            loading="lazy"
+          >
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">{{ section.settings.product_2_title }}</h3>
+          <div class="product-card__price">Rs. {{ section.settings.product_2_price }}</div>
+          <a href="{{ section.settings.product_2_link }}" class="product-card__button">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bento-grid__item">
+      <div class="product-card">
+        <div class="product-card__image-wrapper">
+          <img 
+            src="{{ section.settings.product_3_image | img_url: 'master' }}"
+            alt="{{ section.settings.product_3_title }}"
+            class="product-card__image"
+            loading="lazy"
+          >
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">{{ section.settings.product_3_title }}</h3>
+          <div class="product-card__price">Rs. {{ section.settings.product_3_price }}</div>
+          <a href="{{ section.settings.product_3_link }}" class="product-card__button">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Row: 2 Products -->
+    <div class="bento-grid__item">
+      <div class="product-card">
+        <div class="product-card__image-wrapper">
+          <img 
+            src="{{ section.settings.product_4_image | img_url: 'master' }}"
+            alt="{{ section.settings.product_4_title }}"
+            class="product-card__image"
+            loading="lazy"
+          >
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">{{ section.settings.product_4_title }}</h3>
+          <div class="product-card__price">Rs. {{ section.settings.product_4_price }}</div>
+          <a href="{{ section.settings.product_4_link }}" class="product-card__button">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bento-grid__item">
+      <div class="product-card">
+        <div class="product-card__image-wrapper">
+          <img 
+            src="{{ section.settings.product_5_image | img_url: 'master' }}"
+            alt="{{ section.settings.product_5_title }}"
+            class="product-card__image"
+            loading="lazy"
+          >
+        </div>
+        <div class="product-card__content">
+          <h3 class="product-card__title">{{ section.settings.product_5_title }}</h3>
+          <div class="product-card__price">Rs. {{ section.settings.product_5_price }}</div>
+          <a href="{{ section.settings.product_5_link }}" class="product-card__button">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const scrollItems = document.querySelectorAll('[data-scroll-item]');
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  function updateScrollAnimation() {
+    scrollItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate how far the item should slide based on scroll position
+      const scrollProgress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + rect.height)));
+      
+      // Apply the sliding transform
+      if (item.classList.contains('bento-grid__item--large')) {
+        // Larger items slide more
+        item.style.transform = `translateY(${scrollProgress * 40}px)`;
+      } else {
+        // Smaller items slide less
+        item.style.transform = `translateY(${scrollProgress * 20}px)`;
+      }
+      
+      // Add smooth opacity transition
+      item.style.opacity = Math.max(0.4, Math.min(1, scrollProgress * 1.5));
+    });
+
+    ticking = false;
+  }
+
+  function onScroll() {
+    lastScrollY = window.scrollY;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateScrollAnimation();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  updateScrollAnimation(); // Initial update
+});
+</script>
+
+{% schema %}
+{
+  "name": "Bento Grid",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "product_1_image",
+      "label": "Product 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "product_1_title",
+      "label": "Product 1 Title",
+      "default": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "product_1_price",
+      "label": "Product 1 Price",
+      "default": "62.00"
+    },
+    {
+      "type": "url",
+      "id": "product_1_link",
+      "label": "Product 1 Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_2_image",
+      "label": "Product 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "product_2_title",
+      "label": "Product 2 Title",
+      "default": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "product_2_price",
+      "label": "Product 2 Price",
+      "default": "40.00"
+    },
+    {
+      "type": "url",
+      "id": "product_2_link",
+      "label": "Product 2 Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_3_image",
+      "label": "Product 3 Image"
+    },
+    {
+      "type": "text",
+      "id": "product_3_title",
+      "label": "Product 3 Title",
+      "default": "Product 3"
+    },
+    {
+      "type": "text",
+      "id": "product_3_price",
+      "label": "Product 3 Price",
+      "default": "45.00"
+    },
+    {
+      "type": "url",
+      "id": "product_3_link",
+      "label": "Product 3 Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_4_image",
+      "label": "Product 4 Image"
+    },
+    {
+      "type": "text",
+      "id": "product_4_title",
+      "label": "Product 4 Title",
+      "default": "Product 4"
+    },
+    {
+      "type": "text",
+      "id": "product_4_price",
+      "label": "Product 4 Price",
+      "default": "55.00"
+    },
+    {
+      "type": "url",
+      "id": "product_4_link",
+      "label": "Product 4 Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_5_image",
+      "label": "Product 5 Image"
+    },
+    {
+      "type": "text",
+      "id": "product_5_title",
+      "label": "Product 5 Title",
+      "default": "Product 5"
+    },
+    {
+      "type": "text",
+      "id": "product_5_price",
+      "label": "Product 5 Price",
+      "default": "50.00"
+    },
+    {
+      "type": "url",
+      "id": "product_5_link",
+      "label": "Product 5 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bento Grid",
+      "category": "Product Grid"
+    }
+  ]
+}
+{% endschema %} 

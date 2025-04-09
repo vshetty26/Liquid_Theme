@@ -6,7 +6,7 @@
     padding: 0;
     margin: 0;
     overflow: hidden;
-    min-height: 250vh; /* Further reduced height for more compact layout */
+    min-height: 200vh; /* Reduced height */
     display: block;
     cursor: none; /* Hide default cursor for custom cursor */
   }
@@ -75,7 +75,7 @@
     max-height: 600px;
     min-width: 280px;
     min-height: 280px;
-    z-index: 1; /* Below all text */
+    z-index: 2; /* Image z-index */
     background-color: #888888;
   }
   
@@ -85,6 +85,12 @@
     object-fit: cover;
     object-position: center;
     display: block;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+  }
+  
+  .center-image.fade-out {
+    opacity: 0;
   }
   
   .parallax-text-wrapper {
@@ -92,8 +98,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 250vh; /* Match container height */
-    z-index: 2; /* Above the image */
+    height: 250vh;
+    z-index: 3; /* Above the image */
   }
   
   .text-row {
@@ -112,24 +118,27 @@
   /* Position each text row with reduced spacing */
   .text-row.where-text {
     top: 30vh; /* Moved up */
+    z-index: 1;
   }
   
   .text-row.digital-text {
-    top: 70vh; /* Moved up */
-    z-index: 4; /* Digital slightly higher than other text */
+    top: 70vh;
+    z-index: 3; /* DIGITAL text z-index */
   }
   
   .text-row.meets-text {
     top: 110vh; /* Moved up */
+    z-index: 1;
   }
   
   .text-row.fashion-text {
     top: 150vh; /* Moved up */
+    z-index: 1;
   }
   
   .large-text {
-    font-size: 22vw; /* Enlarged text */
-    line-height: 0.8; /* Reduced line height for tighter text */
+    font-size: 15vw; /* Reduced text size */
+    line-height: 0.8;
     font-weight: 900;
     color: #ffffff;
     text-transform: uppercase;
@@ -143,7 +152,7 @@
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     mix-blend-mode: difference; /* Creates interesting contrast with the image */
-    font-size: 24vw; /* Even larger for DIGITAL */
+    font-size: 17vw; /* Even larger for DIGITAL */
     letter-spacing: 0.02em; /* Reduced but still slightly more than others */
   }
   
