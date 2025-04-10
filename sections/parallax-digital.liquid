@@ -23,19 +23,16 @@
     
     <div class="parallax-text-wrapper">
       <div class="text-row where-text">
-        <span class="large-text">{{ section.settings.text_top | default: 'WHERE' }}</span>
+        <h1 class="large-text">WHERE</h1>
       </div>
-      
-      <div class="text-row digital-text">
-        <span class="large-text digital">{{ section.settings.text_digital | default: 'DIGITAL' }}</span>
-      </div>
-      
-      <div class="text-row meets-text">
-        <span class="large-text">{{ section.settings.text_meets | default: 'MEETS' }}</span>
-      </div>
-      
       <div class="text-row fashion-text">
-        <span class="large-text">{{ section.settings.text_bottom | default: 'FASHION' }}</span>
+        <h1 class="large-text">FASHION</h1>
+      </div>
+      <div class="text-row meets-text">
+        <h1 class="large-text">MEETS</h1>
+      </div>
+      <div class="text-row digital-text">
+        <h1 class="large-text">FITNESS</h1>
       </div>
     </div>
     
@@ -86,7 +83,7 @@
       "type": "text",
       "id": "text_bottom",
       "label": "Bottom Text",
-      "default": "FASHION"
+      "default": "FITNESS"
     },
     {
       "type": "text",
@@ -108,7 +105,7 @@
         "text_top": "WHERE",
         "text_digital": "DIGITAL",
         "text_meets": "MEETS",
-        "text_bottom": "FASHION",
+        "text_bottom": "FITNESS",
         "small_text_top": "DIGITAL FASHION",
         "small_text_bottom": "NUENO"
       }

@@ -2,79 +2,25 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #1a1a1a;
+    color: #ffffff;
     padding: 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.about-container {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-/* Left side - Sticky Image */
-.about-image-container {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    background-color: #f5f5f5;
-    overflow: hidden;
-}
-
-.about-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.explore-circle {
-    position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    width: 120px;
-    height: 120px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.explore-circle-inner {
-    text-align: center;
-    color: #ffffff;
-}
-
-.explore-text {
-    display: block;
-    font-size: 1rem;
-    font-style: italic;
-    margin-bottom: 0.5rem;
-}
-
-/* Right side - Scrolling Content */
 .about-content {
-    max-width: 800px;
+    max-width: 1200px;
     text-align: center;
 }
 
 .about-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    transition: font-style 0.3s ease;
-}
-
-.about-title:hover {
-    font-style: italic;
+    font-size: 3.5vw;
+    line-height: 1.2;
+    margin-bottom: 4rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
 }
 
 .about-text {
@@ -83,12 +29,26 @@
     margin-bottom: 1.5rem;
 }
 
+.emphasized {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+.logo {
+    font-family: serif;
+    opacity: 0.8;
+    font-style: italic;
+    font-size: 0.8em;
+}
+
 .read-more {
     display: inline-block;
-    color: #000000;
+    color: #a3816a;
     text-decoration: none;
-    font-size: 1.1rem;
-    border-bottom: 1px solid #000000;
+    font-size: 1.5rem;
+    font-family: serif;
+    font-style: italic;
     transition: opacity 0.3s ease;
 }
 
@@ -96,75 +56,10 @@
     opacity: 0.7;
 }
 
-.about-header {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.header-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 0;
-}
-
-.header-subtitle {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.discover-text {
-    font-style: italic;
-    color: #666666;
-}
-
-.brand-name {
-    font-weight: 700;
-}
-
-.about-text-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.about-paragraph {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin: 0;
-    max-width: 600px;
-}
-
-.digital-fashion {
-    position: relative;
-    display: inline-block;
-    transition: all 0.3s ease;
-}
-
-.digital-fashion:hover {
-    font-style: italic;
-    transform: skew(-5deg);
-}
-
 /* Responsive styles */
 @media screen and (max-width: 1024px) {
-    .about-container {
-        grid-template-columns: 1fr;
-    }
-
-    .about-image-container {
-        position: relative;
-        height: 60vh;
-    }
-
-    .about-content {
-        padding: 3rem;
-    }
-
-    .header-title {
-        font-size: 2.5rem;
+    .about-title {
+        font-size: 4.5vw;
     }
 }
 
@@ -174,29 +69,11 @@
     }
 
     .about-title {
-        font-size: 2rem;
+        font-size: 5.5vw;
     }
 
-    .about-text {
-        font-size: 1.1rem;
-    }
-
-    .about-content {
-        padding: 2rem;
-        gap: 3rem;
-    }
-
-    .header-title {
-        font-size: 2rem;
-    }
-
-    .about-paragraph {
-        font-size: 1.1rem;
-    }
-
-    .explore-circle {
-        width: 100px;
-        height: 100px;
+    .read-more {
+        font-size: 1.2rem;
     }
 }
 
@@ -206,28 +83,10 @@
     }
 
     .about-title {
-        font-size: 1.8rem;
+        font-size: 7vw;
     }
 
-    .about-text {
-        font-size: 1rem;
-    }
-
-    .about-content {
-        padding: 1.5rem;
-        gap: 2rem;
-    }
-
-    .header-title {
-        font-size: 1.8rem;
-    }
-
-    .about-paragraph {
-        font-size: 1rem;
-    }
-
-    .explore-circle {
-        width: 80px;
-        height: 80px;
+    .read-more {
+        font-size: 1.1rem;
     }
 } 

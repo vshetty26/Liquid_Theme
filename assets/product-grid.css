@@ -137,9 +137,9 @@
     width: 100%;
     padding: 1rem;
     background: #ffffff;
-    color: var(--primary-color);
+    color: #000000;
     border: none;
-    border-radius: 0;
+    border-radius: 25px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s var(--transition-timing);
@@ -155,7 +155,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--primary-color);
+    background: #000000;
     transform: translateX(-100%);
     transition: transform 0.3s var(--transition-timing);
     z-index: 1;
@@ -172,11 +172,11 @@
   }
   
   .buy-now-button:hover {
-    color: var(--text-color);
+    color: #ffffff;
   }
   
   .buy-now-button:hover span {
-    color: var(--text-color);
+    color: #ffffff;
   }
   
   @media (max-width: 1024px) {

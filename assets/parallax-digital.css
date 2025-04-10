@@ -1,298 +1,158 @@
 .parallax-digital-section {
     position: relative;
     width: 100%;
-    background-color: #121212;
-    color: #ffffff;
-    padding: 0;
-    margin: 0;
+    height: 250vh;
+    background-color: #000000;
     overflow: hidden;
-    min-height: 200vh; /* Reduced height */
-    display: block;
-    cursor: none; /* Hide default cursor for custom cursor */
-  }
-  
-  .parallax-container {
+}
+
+.parallax-container {
     position: relative;
     width: 100%;
-    max-width: 1800px;
-    margin: 0 auto;
-    padding: 0;
-    box-sizing: border-box;
-    min-height: 250vh; /* Match section height */
-  }
-  
-  /* Enhanced custom cursor */
-  .custom-cursor {
+    height: 100%;
+}
+
+.center-image-container {
     position: fixed;
-    width: 16px;
-    height: 16px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease;
-    mix-blend-mode: exclusion; /* Better contrast on all backgrounds */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Subtle glow effect */
-  }
-  
-  /* Cursor ring effect */
-  .custom-cursor::after {
-    content: '';
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30px;
-    height: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
-  }
-  
-  /* Cursor hover state */
-  .custom-cursor.hover {
-    width: 12px;
-    height: 12px;
-    background-color: #ffffff;
-  }
-  
-  .custom-cursor.hover::after {
+    width: 35vw;
+    height: 50vh;
+    z-index: 0;
     opacity: 1;
-    width: 40px;
-    height: 40px;
-  }
-  
-  .center-image-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40vw;
-    height: 40vw;
-    max-width: 600px;
-    max-height: 600px;
-    min-width: 280px;
-    min-height: 280px;
-    z-index: 2; /* Image z-index */
-    background-color: #888888;
-  }
-  
-  .center-image {
+    transition: all 0.3s ease-out;
+    pointer-events: none;
+}
+
+.center-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
-    transition: opacity 0.5s ease-in-out;
-    opacity: 1;
-  }
-  
-  .center-image.fade-out {
-    opacity: 0;
-  }
-  
-  .parallax-text-wrapper {
+    transition: all 0.3s ease-out;
+    filter: grayscale(100%);
+}
+
+.parallax-text-wrapper {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 250vh;
-    z-index: 3; /* Above the image */
-  }
-  
-  .text-row {
+    z-index: 1;
+}
+
+.text-row {
+    position: fixed;
     width: 100%;
+    height: 100vh;
     text-align: center;
-    position: absolute;
-    height: 25vh; /* Reduced height for more compact layout */
     display: flex;
     align-items: center;
     justify-content: center;
-    will-change: transform; /* Optimize for animations */
-    letter-spacing: 0.01em; /* Further reduced letter spacing */
-    z-index: 3; /* All text above image */
-  }
-  
-  /* Position each text row with reduced spacing */
-  .text-row.where-text {
-    top: 30vh; /* Moved up */
-    z-index: 1;
-  }
-  
-  .text-row.digital-text {
-    top: 70vh;
-    z-index: 3; /* DIGITAL text z-index */
-  }
-  
-  .text-row.meets-text {
-    top: 110vh; /* Moved up */
-    z-index: 1;
-  }
-  
-  .text-row.fashion-text {
-    top: 150vh; /* Moved up */
-    z-index: 1;
-  }
-  
-  .large-text {
-    font-size: 15vw; /* Reduced text size */
+    will-change: transform;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
+}
+
+.text-row.where-text {
+    top: 0;
+    z-index: -2;
+}
+
+.text-row.fashion-text {
+    top: 0;
+    z-index: 2;
+}
+
+.text-row.meets-text {
+    top: 0;
+    z-index: -2;
+}
+
+.text-row.digital-text {
+    top: 0;
+    z-index: -2;
+}
+
+.large-text {
+    font-size: 13vw;
     line-height: 0.8;
     font-weight: 900;
     color: #ffffff;
     text-transform: uppercase;
-    letter-spacing: 0.01em; /* Further reduced letter spacing */
+    letter-spacing: -0.02em;
     white-space: nowrap;
-    text-align: center;
-    cursor: none; /* Ensure custom cursor works on text */
-  }
-  
-  .large-text.digital {
+    opacity: 1;
+    transition: all 0.3s ease-out;
+    transform-origin: center center;
+}
+
+.text-row.fashion-text .large-text {
+    font-weight: 400;
+}
+
+.large-text.digital {
+    font-size: 16vw;
     color: rgba(255, 255, 255, 0.95);
     text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    mix-blend-mode: difference; /* Creates interesting contrast with the image */
-    font-size: 17vw; /* Even larger for DIGITAL */
-    letter-spacing: 0.02em; /* Reduced but still slightly more than others */
-  }
-  
-  .small-text-container {
+    mix-blend-mode: difference;
+}
+
+/* Small text styles */
+.small-text-container {
     position: fixed;
     top: 2rem;
-    left: 2rem;
-    right: 2rem;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    z-index: 10; /* Always on top */
-  }
-  
-  .small-text {
+    padding: 0 2rem;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.small-text {
     font-size: 1rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
     color: #ffffff;
-    cursor: none; /* Ensure custom cursor works on small text */
-  }
-  
-  .small-text.bottom {
-    text-align: right;
-  }
-  
-  /* Responsive adjustments */
-  @media screen and (max-width: 1200px) {
-    .large-text {
-      font-size: 24vw;
-    }
-    
-    .large-text.digital {
-      font-size: 26vw;
-    }
-    
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Custom cursor */
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+}
+
+.custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
     .center-image-container {
-      width: 50vw;
-      height: 50vw;
+        width: 70vw;
+        height: 45vh;
     }
-    
-    .custom-cursor {
-      width: 14px;
-      height: 14px;
-    }
-    
-    .custom-cursor::after {
-      width: 26px;
-      height: 26px;
-    }
-    
-    .custom-cursor.hover::after {
-      width: 36px;
-      height: 36px;
-    }
-  }
-  
-  @media screen and (max-width: 768px) {
-    .parallax-container {
-      padding: 0;
-    }
-    
+
     .large-text {
-      font-size: 26vw;
-      letter-spacing: 0.01em;
+        font-size: 11vw;
     }
-    
+
     .large-text.digital {
-      font-size: 28vw;
-      letter-spacing: 0.02em;
+        font-size: 14vw;
     }
-    
-    .center-image-container {
-      width: 70vw;
-      height: 70vw;
-    }
-    
-    .small-text-container {
-      top: 1rem;
-      left: 1.5rem;
-      right: 1.5rem;
-    }
-    
+
     .small-text {
-      font-size: 0.8rem;
+        font-size: 0.875rem;
     }
-    
-    .custom-cursor {
-      width: 12px;
-      height: 12px;
-    }
-    
-    .custom-cursor::after {
-      width: 22px;
-      height: 22px;
-    }
-    
-    .custom-cursor.hover::after {
-      width: 30px;
-      height: 30px;
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .large-text {
-      font-size: 28vw;
-    }
-    
-    .large-text.digital {
-      font-size: 30vw;
-    }
-    
-    .center-image-container {
-      width: 80vw;
-      height: 80vw;
-    }
-    
-    .small-text-container {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      right: 1rem;
-    }
-    
-    .small-text {
-      font-size: 0.7rem;
-    }
-    
-    .custom-cursor {
-      width: 10px;
-      height: 10px;
-    }
-    
-    .custom-cursor::after {
-      width: 18px;
-      height: 18px;
-    }
-    
-    .custom-cursor.hover::after {
-      width: 24px;
-      height: 24px;
-    }
-  } 
+} 
